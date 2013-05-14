@@ -27,3 +27,6 @@ sanction
 django-tinymce
 longerusername
 beautifulsoup4
+psycopg2
+gunicorn
+dj-database-url
