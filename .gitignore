@@ -27,7 +27,7 @@ nbproject
 pip-log.txt
 tmp/*
 /tmp/
-/__init__.py
+#/__init__.py
 #/manage.py
 #/urls.py
 /log
