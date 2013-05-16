@@ -1,4 +1,4 @@
-## Django settings for ASKBOT enabled project.
+## Django se#ttings for ASKBOT enabled project.
 import os.path
 import logging
 import sys
@@ -13,7 +13,7 @@ import dj_database_url
 ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
-DEBUG = True#set to True to enable debugging
+DEBUG = False#True#set to True to enable debugging
 TEMPLATE_DEBUG = False#keep false when debugging jinja2 templates
 INTERNAL_IPS = ('127.0.0.1',)
 
@@ -83,7 +83,16 @@ LANGUAGE_CODE = 'en'
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'askbot', 'upfiles')
 MEDIA_URL = '/upfiles/'
-STATIC_URL = '/m/'#this must be different from MEDIA_URL
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#STATICFILES_STORAGE = 'askbot.storage.CachedS3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAI7W6VFFCGMWIUCRQ'
+AWS_SECRET_ACCESS_KEY = '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' 
+AWS_STORAGE_BUCKET_NAME = 'askbot-test'
+AWS_LOCATION = '/static/'
+
+#STATIC_URL = '/m/'#this must be different from MEDIA_URL
+STATIC_URL = '//%s.s3-website-us-east-1.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
 
 PROJECT_ROOT = os.path.dirname(__file__)
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
@@ -191,13 +200,15 @@ INSTALLED_APPS = (
     'group_messaging',
     'gunicorn',
     'storages',
+    'jingo_offline_compressor',
     #'avatar',#experimental use git clone git://github.com/ericflo/django-avatar.git$
 )
 
 
 #setup memcached for production use!
 #see http://docs.djangoproject.com/en/1.1/topics/cache/ for details
-CACHE_BACKEND = 'locmem://'
+#CACHE_BACKEND = 'locmem://'
+CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
 #needed for django-keyedcache
 CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different
@@ -314,3 +325,8 @@ if 'ASKBOT_CSS_DEVEL' in locals() and ASKBOT_CSS_DEVEL == True:
 COMPRESS_JS_FILTERS = []
 COMPRESS_PARSER = 'compressor.parser.HtmlParser' 
 JINJA2_EXTENSIONS = ('compressor.contrib.jinja2ext.CompressorExtension',)
+
+#COMPRESS_ROOT = STATIC_ROOT
+#COMPRESS_STORAGE = STATICFILES_STORAGE
+#COMPRESS_OFFLINE = False
+#COMPRESS_URL = STATIC_URL

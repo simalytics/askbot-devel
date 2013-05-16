@@ -30,3 +30,5 @@ beautifulsoup4
 psycopg2
 gunicorn
 dj-database-url
+django-storages
+boto
