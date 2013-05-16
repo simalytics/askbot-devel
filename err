@@ -1,0 +1,256 @@
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/faq_static.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/base_site.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/base_site.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/list_suggested_tags.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/change_list.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/change_list.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/list_widgets.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/email_validation.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_compressor-1.2-py2.7.egg/compressor/templates/compressor/css_file.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/delete_confirmation.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/delete_confirmation.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/home_thread_details.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_tabs.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/badges.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/base.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/base.html: expected token 'end of print statement', got ':'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/group_snippet.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/500.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/modal_menu.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/content.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/users_questions.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/404.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/404.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/tags/content.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/answer_tab_bar.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/signup_with_password.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/instant_notification.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/scope_nav.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_change_done.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_change_done.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/includes/fieldset.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/includes/fieldset.html: expected token 'end of statement block', got 'string'
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_email.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_email.html: Encountered unknown tag 'autoescape'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/twitter_sharing_controls.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/search_form.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/search_form.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/threads_list.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/answer_comments.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_network.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_tinymce-1.5.1b2-py2.7.egg/tinymce/templates/tinymce/preview_javascript.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/footer.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/unanswered_question_reminder.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/notify_author_about_approved_post.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/delete_widget.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/date_hierarchy.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_confirm.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_confirm.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/two_column_body.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/user_list.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/import_data.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/ask_by_widget.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/prepopulated_fields_js.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/prepopulated_fields_js.html: expected token 'end of print statement', got ':'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/bottom_scripts.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/javascript.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/meta_nav.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/complete.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/delete_selected_confirmation.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/delete_selected_confirmation.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/providers_javascript.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_votes.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/related_tags.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/tab_bar.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/html_head_stylesheets.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/widget_signin.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_inbox/group_join_requests.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/email_alert.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/debug_header.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/footer.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/new_answer_form.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/tag_selector.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/sidebar.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/question_vote_buttons.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/content.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/paginator.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/share_buttons.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/avatar/change.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/answer_vote_buttons.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/500.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/500.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/groups.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/edit_post.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_complete.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_complete.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/filter.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/filter.html: Encountered unknown tag 'blocktrans'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/livesettings/site_settings.html
+Invalid template /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/livesettings/site_settings.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/logout.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_info.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/fonts.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/tag_search.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/answer_author_info.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/notify_admins_about_new_tags.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/rejected_post.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/three_column_category_selector.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/revisions.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/ask_button.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/avatar/add.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/change_list_results.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/change_list_results.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/secondary_header.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/question_card.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/tinymce_css.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/pagination.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/pagination.html: Encountered unknown tag 'paginator_number'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_celery-3.0.11-py2.7.egg/djcelery/templates/admin/djcelery/change_list.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_celery-3.0.11-py2.7.egg/djcelery/templates/admin/djcelery/change_list.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/re_welcome_lamson_on.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/livesettings/_admin_site_views.html
+Invalid template /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/livesettings/_admin_site_views.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/answer_card.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_compressor-1.2-py2.7.egg/compressor/templates/compressor/js_inline.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/django_error.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/welcome_lamson_on.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/tags/form_bulk_tag_subscription.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/logged_out.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/logged_out.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_stats.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/one_column_body.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/question_edit_tips.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/question_controls.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/auth/user/change_password.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/auth/user/change_password.html: expected token 'end of print statement', got ':'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/changeemail.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/widgets.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/question_summary.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/home.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/quoted_post.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/login.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/login.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/tags/header.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/reject_post_dialog.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/edit_inline/tabular.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/edit_inline/tabular.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/user_navigation.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/base.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/system_messages.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/invalid_setup.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/invalid_setup.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/macros.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/category_tree_js.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/question_tags.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/macros.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_robots-0.9.2-py2.7.egg/robots/templates/robots/rule_list.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_robots-0.9.2-py2.7.egg/robots/templates/robots/rule_list.html: Encountered unknown tag 'ifchanged'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/stored_message.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/insufficient_rep_to_post_by_email.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/auth/user/add_form.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/auth/user/add_form.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/user_long_score_and_badge_summary.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_keyedcache-1.4_6-py2.7.egg/keyedcache/templates/keyedcache/delete.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_keyedcache-1.4_6-py2.7.egg/keyedcache/templates/keyedcache/delete.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/tags.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_done.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_done.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/base_mail.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/mandatory_tags_js.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/search_bar.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/badge.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/users.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_celery-3.0.11-py2.7.egg/djcelery/templates/djcelery/confirm_rate_limit.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_celery-3.0.11-py2.7.egg/djcelery/templates/djcelery/confirm_rate_limit.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/subscribe_for_tags.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_moderate.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_compressor-1.2-py2.7.egg/compressor/templates/compressor/css_inline.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_recent.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/custom_tab.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/submit_line.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/submit_line.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/header.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question_edit.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/accept_answer_reminder.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/language_nav.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/reply_by_email_error.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_form.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_reset_form.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_favorites.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/sidebar.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/avatar/confirm_delete.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_compressor-1.2-py2.7.egg/compressor/templates/compressor/js_file.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/close.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/group_info.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/static_page.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/authopenid_macros.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/macros.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/verify_email.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_email_subscriptions.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/answer_controls.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/answer_edit_tips.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/tag_category_selector.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/index.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/index.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/welcome_lamson_off.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/questions_loop.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/user_card.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widget_base.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/reopen.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/question_widget.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/senders_list.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/closed_question_info.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/404.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/markdown_help.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/ask_by_widget.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/widget_form.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question_retag.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_reputation.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_inbox/messages.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/logo.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_inbox/responses_and_flags.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/help.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/ask_widget_complete.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/headline.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/group_messaging/thread_details.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_inbox/base.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/contributors.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/editor_data.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/edit_inline/stacked.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/edit_inline/stacked.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/livesettings/group_settings.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/question_author_info.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/groups_list.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/ask.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/authopenid/signin.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/object_history.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/object_history.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/feedback.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/change_form.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/change_form.html: expected token 'end of print statement', got ':'
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/app_index.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/app_index.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_keyedcache-1.4_6-py2.7.egg/keyedcache/templates/keyedcache/view.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_keyedcache-1.4_6-py2.7.egg/keyedcache/templates/keyedcache/view.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/question_comments.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/question/javascript.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/meta/html_head_javascript.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_change_form.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/registration/password_change_form.html: Encountered unknown tag 'static'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/main_page/nothing_found.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/answer_edit.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_keyedcache-1.4_6-py2.7.egg/keyedcache/templates/keyedcache/stats.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/django_keyedcache-1.4_6-py2.7.egg/keyedcache/templates/keyedcache/stats.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/tags/list_bulk_tag_subscription.html
+### /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/actions.html
+Invalid template /home/mchan/projects/askbot-test/local/lib/python2.7/site-packages/Django-1.4.5-py2.7.egg/django/contrib/admin/templates/admin/actions.html: expected token 'name', got 'string'
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/user_profile/user_edit.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/macros.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/ask_form.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/embed/ask_widget_complete.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/widgets/tag_editor.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/ask_for_signature.html
+### /home/mchan/projects/askbot-test/askbot-devel/askbot/templates/email/post_as_subthread.html
