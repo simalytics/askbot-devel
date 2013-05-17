@@ -6,7 +6,7 @@
 db
 rebuild-locales.pl
 /src
-/static
+#/static
 cache/??
 run
 #*.wsgi
@@ -19,7 +19,6 @@ nbproject
 lint
 env
 /custom_settings
-/static
 django
 lamson
 django/*
