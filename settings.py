@@ -84,15 +84,16 @@ LANGUAGE_CODE = 'en'
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'askbot', 'upfiles')
 MEDIA_URL = '/upfiles/'
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#STATICFILES_STORAGE = 'askbot.storage.CachedS3BotoStorage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'askbot.storage.CachedS3BotoStorage'
+#STATICFILES_STORAGE = 'django.core.files.storage.FileSystemStorage'
 AWS_ACCESS_KEY_ID = 'AKIAI7W6VFFCGMWIUCRQ'
 AWS_SECRET_ACCESS_KEY = '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' 
 AWS_STORAGE_BUCKET_NAME = 'askbot-test'
 AWS_LOCATION = '/static/'
 
 #STATIC_URL = '/m/'#this must be different from MEDIA_URL
-STATIC_URL = '//%s.s3-website-us-east-1.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
+STATIC_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
 
 PROJECT_ROOT = os.path.dirname(__file__)
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
@@ -200,15 +201,15 @@ INSTALLED_APPS = (
     'group_messaging',
     'gunicorn',
     'storages',
-    #'coffin_offline_compressor',
+    'coffin_offline_compressor',
     #'avatar',#experimental use git clone git://github.com/ericflo/django-avatar.git$
 )
 
 
 #setup memcached for production use!
 #see http://docs.djangoproject.com/en/1.1/topics/cache/ for details
-CACHE_BACKEND = 'locmem://'
-#CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
+#CACHE_BACKEND = 'locmem://'
+CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
 #needed for django-keyedcache
 CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different
@@ -330,3 +331,8 @@ COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_STORAGE = STATICFILES_STORAGE
 COMPRESS_OFFLINE = True
 COMPRESS_URL = STATIC_URL
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+)
