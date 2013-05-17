@@ -1,3 +1,0 @@
-[console_scripts]
-askbot-setup = askbot.deployment:askbot_setup
-
