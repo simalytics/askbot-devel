@@ -52,6 +52,6 @@ recaptcha
 *.DS_Store
 htmlcov
 askbot.egg-info
-database
+#database
 .project
 .pydevproject
