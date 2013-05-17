@@ -207,8 +207,8 @@ INSTALLED_APPS = (
 
 #setup memcached for production use!
 #see http://docs.djangoproject.com/en/1.1/topics/cache/ for details
-#CACHE_BACKEND = 'locmem://'
-CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
+CACHE_BACKEND = 'locmem://'
+#CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
 #needed for django-keyedcache
 CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different
