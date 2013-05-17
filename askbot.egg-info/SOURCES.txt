@@ -1460,7 +1460,7 @@ askbot/skins/README
 askbot/skins/__init__.py
 askbot/skins/loaders.py
 askbot/skins/utils.py
-askbot/storage/cacheds3botostorage.py
+askbot/storage/__init__.py
 askbot/templates/404.html
 askbot/templates/500.html
 askbot/templates/answer_edit.html
@@ -1471,6 +1471,7 @@ askbot/templates/badge.html
 askbot/templates/badges.html
 askbot/templates/base.html
 askbot/templates/close.html
+askbot/templates/database
 askbot/templates/debug_header.html
 askbot/templates/django_error.html
 askbot/templates/faq_static.html
@@ -1564,6 +1565,7 @@ askbot/templates/meta/html_head_javascript.html
 askbot/templates/meta/html_head_stylesheets.html
 askbot/templates/meta/mandatory_tags_js.html
 askbot/templates/meta/tinymce_css.html
+askbot/templates/question/.javascript.html.swp
 askbot/templates/question/answer_author_info.html
 askbot/templates/question/answer_card.html
 askbot/templates/question/answer_comments.html

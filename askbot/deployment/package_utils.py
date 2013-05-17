@@ -14,7 +14,8 @@ def get_coffin_version():
     version = coffin.__version__
     if len(version) == 2:
         micro_version = 0
-    elif len(version) == 3:
+    # Allow dev versions too!
+    elif len(version) == 3 or version[3] == 'dev':
         micro_version = version[2]
     else:
         raise ValueError('unsupported version of coffin %s' % '.'.join(version))

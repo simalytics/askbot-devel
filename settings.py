@@ -200,7 +200,7 @@ INSTALLED_APPS = (
     'group_messaging',
     'gunicorn',
     'storages',
-    'jingo_offline_compressor',
+    'coffin_offline_compressor',
     #'avatar',#experimental use git clone git://github.com/ericflo/django-avatar.git$
 )
 
@@ -326,7 +326,7 @@ COMPRESS_JS_FILTERS = []
 COMPRESS_PARSER = 'compressor.parser.HtmlParser' 
 JINJA2_EXTENSIONS = ('compressor.contrib.jinja2ext.CompressorExtension',)
 
-#COMPRESS_ROOT = STATIC_ROOT
-#COMPRESS_STORAGE = STATICFILES_STORAGE
-#COMPRESS_OFFLINE = False
-#COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_OFFLINE = True
+COMPRESS_URL = STATIC_URL

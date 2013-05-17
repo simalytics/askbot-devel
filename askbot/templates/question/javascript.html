@@ -22,6 +22,7 @@
         }
         
         lanai.highlightSyntax();
+
         $('#btLogin').bind('click', function(){
             window.location.href='{{ settings.LOGIN_URL }}';
         });
@@ -42,7 +43,7 @@
 
         if (askbot['data']['userIsAuthenticated']) {
             var draftHandler = new DraftAnswer();
-            draftHandler.setThreadId({{ thread.id }});
+            draftHandler.setThreadId(threadId);
             draftHandler.decorate($(document));
         }
     });
@@ -70,10 +71,10 @@
                          captureLength: 5, callback: lanai.highlightSyntax});
                          
         var display = true;
-        var txt = "[{% trans %}hide preview{% endtrans %}]";
+        var txt = "[hide preview]";
         $('#pre-collapse').text(txt);
         $('#pre-collapse').bind('click', function(){
-            txt = display ? "[{% trans %}show preview{% endtrans %}]" : "[{% trans %}hide preview{% endtrans %}]";
+            txt = display ? "[show preview]" : "[hide preview]";
             display = !display;
             $('#previewer').toggle();
             $('#pre-collapse').text(txt);

@@ -186,7 +186,7 @@
                 var controls = deleteBtn.parentNode;
                 if (//maybe remove "delete" button
                     data['userReputation'] < 
-                    {{settings.MIN_REP_TO_DELETE_OTHERS_COMMENTS}}
+                    {{ settings.MIN_REP_TO_DELETE_OTHERS_COMMENTS}}
                 ) {
                     removeNode(deleteBtn);
                 }
@@ -333,6 +333,9 @@
         askbot['settings']['tagSource'] = '{{ settings.TAG_SOURCE }}';
         askbot['settings']['enableSharingGoogle'] = {{ settings.ENABLE_SHARING_GOOGLE|as_js_bool }};
         askbot['settings']['enableEmailAlerts'] = {{ settings.ENABLE_EMAIL_ALERTS|as_js_bool }};
+    </script>
+    <script type="text/javascript">
+      var threadId = {{ thread.id }}
     </script>
     {% include "meta/editor_data.html" %}
     {% compress js %}

@@ -21,34 +21,25 @@ div.fieldcontainer { float: left; margin-right: 0; }
 {% endblock %}
 {% block coltype %}colMS{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
-{% block userlinks %}<a href="/admin/doc/">{% trans 'Documentation' %}</a> / <a href="/admin/password_change/">{% trans 'Change password' %}</a> / <a href="/admin/logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block userlinks %}<a href="/admin/doc/">{% trans %}Documentation{% endtrans %}</a> / <a href="/admin/password_change/">{% trans %}Change password{% endtrans %}</a> / <a href="/admin/logout/">{% trans %}Log out{% endtrans %}</a>{% endblock %}
 {% block breadcrumbs %}{% if not is_popup %}
 <div class="breadcrumbs">
-     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;
-     {% trans "Edit Site Settings" %}
+     <a href="/admin/">{% trans %}Home{% endtrans %}</a> &rsaquo;
+     {% trans %}Edit Site Settings{% endtrans %}
 </div>
 {% endif %}{% endblock %}
 {% block content %}
-{% comment %}
-<div class="fieldcontainer">
-<ul class="fieldref">
-{% for group in form.groups %}
-    <li><a onclick="javascript:CollapsedFieldsets.show({{ forloop.counter0 }});" href="#{{ group.key }}">{{ group.name }}</a></li>
-{% endfor %}
-</ul>
-</div>
-{% endcomment %}
 <span style="clear: both;" />
 <div id="content-main">
 {% if not use_db %}
-	<p>{% trans "Livesettings are disabled for this site." %}</p>
-	<p>{% trans "All configuration options must be edited in the site settings.py file" %}</p>
+	<p>{% trans %}Livesettings are disabled for this site.{% endtrans %}</p>
+	<p>{% trans %}All configuration options must be edited in the site settings.py file{% endtrans %}</p>
 	</div>
 	{% admin_site_views 'satchmo_site_settings' %}
 {% else %}
 	{% if form.errors %}
 	    <p class="errornote">
-	    {% blocktrans count form.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+	    Please correct the error below.
 	    </p>
 	{% endif %}
 	{% if form.fields %}
@@ -64,7 +55,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
 	            {% endif %}
 	            <fieldset class="module collapse">
 	            <h2 id="{{ group.key }}">{{ group.name }}</h2>
-	                <table summary="{% blocktrans with group.name as name %}Group settings: {{ name }}{% endblocktrans %}" style="width: 100%">
+	                <table summary="Group settings: {{ name }}" style="width: 100%">
 	            {% endwith %}{% endifchanged %}
 
 	            	    {% if field.errors %}
@@ -91,11 +82,11 @@ div.fieldcontainer { float: left; margin-right: 0; }
 	{% admin_site_views 'satchmo_site_settings' %}
 	<br class="clear:both;" />
 	<input type="submit" value="Save" class="default" />
-	<p><a onclick="javascript:CollapsedFieldsets.uncollapse_all(); return false;" href="#">{% trans 'Uncollapse all' %}</a></p>
+	<p><a onclick="javascript:CollapsedFieldsets.uncollapse_all(); return false;" href="#">{% trans %}Uncollapse all{% endtrans %}</a></p>
 	<p><a href="{% url settings_export %}">Export</a></p>
 	</form>
 	{% else %}
-	    <p>{% trans "You don't have permission to edit values." %}</p>
+	    <p>{% trans %}You don't have permission to edit values.{% endtrans %}</p>
 	{% endif %}
 {% endif %}
 </div>
