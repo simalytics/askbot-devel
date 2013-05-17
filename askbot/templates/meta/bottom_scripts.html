@@ -47,6 +47,7 @@
     {% else %}
         askbot['data']['searchUrl'] = '';
     {% endif %}
+    group_list = {{ group_list }}
 </script>
 {# everything below until the custom js and google analytics is compressable #}
 {% compress js %}
@@ -95,7 +96,8 @@
         }
         if (askbot['settings']['groupsEnabled']) {
             askbot['urls']['add_group'] = "{% url add_group %}";
-            var group_dropdown = new GroupDropdown({{ group_list }});
+            // var group_dropdown = new GroupDropdown({{ group_list }});
+            var group_dropdown = new GroupDropdown(group_list);
             $('.dropdown').append(group_dropdown.getElement());
             if (askbot['data']['userIsAdmin']) {
                 group_dropdown.enableAddGroups();
