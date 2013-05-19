@@ -9,6 +9,7 @@ from django.conf.urls.defaults import patterns
 from django.conf.urls.defaults import url
 from django.conf import settings
 from django.contrib import admin
+from django.http import HttpResponse
 
 admin.autodiscover()
 
@@ -29,6 +30,7 @@ urlpatterns += patterns('',
     (r'^followit/', include('followit.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     (r'^robots.txt$', include('robots.urls')),
+    (r'mu-c6e91be8-552c03a2-a6a38111-a6ea6071', lambda s: HttpResponse("42")),
     url( # TODO: replace with django.conf.urls.static ?
         r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:],
         'django.views.static.serve',
