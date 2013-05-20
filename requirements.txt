@@ -32,5 +32,5 @@ gunicorn
 dj-database-url
 django-storages
 boto
-distribute==0.6.40
+distribute
 MySQL-python==1.2.4
