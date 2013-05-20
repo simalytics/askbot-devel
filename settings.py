@@ -25,12 +25,13 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'database',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'testdb',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'parkside',                  # Not used with sqlite3.
+        'HOST': 'askbot-test.ch1lffqhjedf.us-east-1.rds.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -87,8 +88,8 @@ MEDIA_URL = '/upfiles/'
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'askbot.storage.CachedS3BotoStorage'
 #STATICFILES_STORAGE = 'django.core.files.storage.FileSystemStorage'
-AWS_ACCESS_KEY_ID = 'AKIAI7W6VFFCGMWIUCRQ'
-AWS_SECRET_ACCESS_KEY = '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' 
+AWS_ACCESS_KEY_ID = 'AKIAJEGKM6KS2VXONDDA'
+AWS_SECRET_ACCESS_KEY = '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' 
 AWS_STORAGE_BUCKET_NAME = 'askbot-test'
 AWS_LOCATION = '/static/'
 
@@ -227,12 +228,12 @@ AUTHENTICATION_BACKENDS = (
 )
 
 #logging settings
-#LOG_FILENAME = 'askbot.log'
-#logging.basicConfig(
-#    filename=os.path.join(os.path.dirname(__file__), 'log', LOG_FILENAME),
-#    level=logging.CRITICAL,
-#    format='%(pathname)s TIME: %(asctime)s MSG: %(filename)s:%(funcName)s:%(lineno)d %(message)s',
-#)
+LOG_FILENAME = 'askbot.log'
+logging.basicConfig(
+    filename=os.path.join(os.path.dirname(__file__), 'log', LOG_FILENAME),
+    level=logging.CRITICAL,
+    format='%(pathname)s TIME: %(asctime)s MSG: %(filename)s:%(funcName)s:%(lineno)d %(message)s',
+)
 
 ###########################
 #
