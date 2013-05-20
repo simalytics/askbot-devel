@@ -32,3 +32,4 @@ gunicorn
 dj-database-url
 django-storages
 boto
+MySQL-python==1.2.4
