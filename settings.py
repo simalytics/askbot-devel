@@ -91,12 +91,11 @@ STATICFILES_STORAGE = 'askbot.storage.CachedS3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJEGKM6KS2VXONDDA'
 AWS_SECRET_ACCESS_KEY = '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' 
 AWS_STORAGE_BUCKET_NAME = 'askbot-test'
-AWS_LOCATION = '/static/'
 
 AWS_QUERYSTRING_AUTH = False
 
 #STATIC_URL = '/m/'#this must be different from MEDIA_URL
-STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
+STATIC_URL = 'https://s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
 
 PROJECT_ROOT = os.path.dirname(__file__)
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
@@ -204,7 +203,7 @@ INSTALLED_APPS = (
     'group_messaging',
     'gunicorn',
     'storages',
-    #'coffin_offline_compressor',
+    'coffin_offline_compressor',
     #'avatar',#experimental use git clone git://github.com/ericflo/django-avatar.git$
 )
 
