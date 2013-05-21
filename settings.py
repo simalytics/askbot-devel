@@ -203,7 +203,7 @@ INSTALLED_APPS = (
     'group_messaging',
     'gunicorn',
     'storages',
-    'coffin_offline_compressor',
+    #'coffin_offline_compressor',
     #'avatar',#experimental use git clone git://github.com/ericflo/django-avatar.git$
 )
 
