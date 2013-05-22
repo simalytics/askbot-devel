@@ -95,7 +95,7 @@ AWS_LOCATION = "/static/"
 AWS_QUERYSTRING_AUTH = False
 
 #STATIC_URL = '/m/'#this must be different from MEDIA_URL
-STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
+STATIC_URL = 'https://s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME #this must be different from MEDIA_URL
 
 PROJECT_ROOT = os.path.dirname(__file__)
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
