@@ -86,6 +86,7 @@ def questions(request, **kwargs):
     qs, meta_data = models.Thread.objects.run_advanced_search(
                         request_user=request.user, search_state=search_state
                     )
+
     if meta_data['non_existing_tags']:
         search_state = search_state.remove_tags(meta_data['non_existing_tags'])
 

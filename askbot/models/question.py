@@ -243,7 +243,6 @@ class ThreadManager(BaseQuerySetManager):
 
         """
         from askbot.conf import settings as askbot_settings # Avoid circular import
-
         primary_filter = {
             'posts__post_type': 'question',
             'posts__deleted': False
