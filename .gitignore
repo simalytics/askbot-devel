@@ -56,3 +56,4 @@ database
 .project
 .pydevproject
 sphinx.conf
+dbpopulator/*.sql
