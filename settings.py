@@ -77,6 +77,7 @@ SITE_ID = 1
 
 # SPHINX_SERVER = 'ec2-50-16-150-32.compute-1.amazonaws.com'
 SPHINX_SERVER = 'localhost'
+USE_SPHINX_SEARCH = True
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
