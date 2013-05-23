@@ -33,3 +33,5 @@ dj-database-url
 django-storages
 boto
 MySQL-python==1.2.3
+django-redis-cache==0.9.7
+redis==2.7.5
