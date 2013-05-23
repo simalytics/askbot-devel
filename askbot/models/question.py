@@ -230,7 +230,7 @@ class ThreadManager(BaseQuerySetManager):
                 if not ThreadManager.sphinxserver:
                     ThreadManager.sphinxsever = sphinxapi.SphinxClient()
                     sphinx_location = getattr(django_settings, 'SPHINX_SERVER', 'localhost')
-                    ThreadManager.sphinxsever.SetServer(sphinx_location, 9312)
+                    ThreadManager.sphinxsever.SetServer(sphinx_location, 9311)
                 ThreadManager.sphinxsever.SetLimits(0, 100)
                 query_results = ThreadManager.sphinxsever.Query(search_query)
                 question_ids = [q['id'] for q in query_results['matches']]
