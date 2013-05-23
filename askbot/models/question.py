@@ -9,7 +9,7 @@ from django.core import cache  # import cache, not from cache import cache, to b
 from django.core import exceptions as django_exceptions
 from django.core.urlresolvers import reverse
 from django.template.loader import get_template
-from django.utils.hashcompat import md5_constructor
+#from django.utils.hashcompat import md5_constructor
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.utils.translation import string_concat
@@ -17,8 +17,8 @@ from django.utils.translation import get_language
 
 import askbot
 from askbot.conf import settings as askbot_settings
-from askbot import mail
-from askbot.mail import messages
+#from askbot import mail
+#from askbot.mail import messages
 from askbot.models.tag import Tag
 from askbot.models.tag import get_tags_by_names
 from askbot.models.tag import filter_accepted_tags, filter_suggested_tags
@@ -31,10 +31,13 @@ from askbot.models import signals
 from askbot import const
 from askbot.utils.lists import LazyList
 from askbot.search import mysql
-from askbot.utils.slug import slugify
+#from askbot.utils.slug import slugify
 from askbot.search.state_manager import DummySearchState
 
+import sphinxapi
+
 class ThreadQuerySet(models.query.QuerySet):
+
     def get_visible(self, user):
         """filters out threads not belonging to the user groups"""
         if user.is_authenticated():
@@ -50,6 +53,16 @@ class ThreadQuerySet(models.query.QuerySet):
         """
         db_engine_name = askbot.get_database_engine_name()
         filter_parameters = {'deleted': False}
+        if getattr(django_settings, 'USE_SPHINX_SEARCH', False):
+            if not ThreadManager.sphinxserver:
+                ThreadManager.sphinxserver = sphinxapi.SphinxClient()
+                sphinx_location = getattr(django_settings, 'SPHINX_SERVER', 'localhost')
+                ThreadManager.sphinxserver.SetServer(sphinx_location, 9312)
+                ThreadManager.sphinxserver.SetMatchMode(sphinxapi.SPH_MATCH_BOOLEAN)
+            ThreadManager.sphinxserver.SetLimits(0, 20)
+            query_results = ThreadManager.sphinxserver.Query(search_query)
+            question_ids = [q['id'] for q in query_results['matches']]
+            return self.filter(id__in=question_ids)
         if 'postgresql_psycopg2' in db_engine_name:
             from askbot.search import postgresql
             return postgresql.run_title_search(
@@ -69,7 +82,7 @@ class ThreadQuerySet(models.query.QuerySet):
 
 
 class ThreadManager(BaseQuerySetManager):
-
+    sphinxserver = None
     def get_query_set(self):
         return ThreadQuerySet(self.model)
 
@@ -213,11 +226,19 @@ class ThreadManager(BaseQuerySetManager):
         else:
             if not qs:
                 qs = self.all()
-    #        if getattr(settings, 'USE_SPHINX_SEARCH', False):
+            if getattr(django_settings, 'USE_SPHINX_SEARCH', False):
+                if not ThreadManager.sphinxserver:
+                    ThreadManager.sphinxsever = sphinxapi.SphinxClient()
+                    sphinx_location = getattr(django_settings, 'SPHINX_SERVER', 'localhost')
+                    ThreadManager.sphinxsever.SetServer(sphinx_location, 9312)
+                ThreadManager.sphinxsever.SetLimits(0, 100)
+                query_results = ThreadManager.sphinxsever.Query(search_query)
+                question_ids = [q['id'] for q in query_results['matches']]
+                return qs.filter(id__in=question_ids)
     #            matching_questions = Question.sphinx_search.query(search_query)
     #            question_ids = [q.id for q in matching_questions]
     #            return qs.filter(posts__post_type='question', posts__deleted=False, posts__self_question_id__in=question_ids)
-            if askbot.get_database_engine_name().endswith('mysql') \
+            elif askbot.get_database_engine_name().endswith('mysql') \
                 and mysql.supports_full_text_search():
                 return qs.filter(
                     models.Q(title__search = search_query) |
