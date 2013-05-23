@@ -51,6 +51,7 @@ class ThreadQuerySet(models.query.QuerySet):
         todo: possibly add tags
         todo: implement full text search on relevant fields
         """
+        print "#############"
         db_engine_name = askbot.get_database_engine_name()
         filter_parameters = {'deleted': False}
         if getattr(django_settings, 'USE_SPHINX_SEARCH', False):
