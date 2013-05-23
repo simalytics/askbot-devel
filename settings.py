@@ -1,10 +1,10 @@
 ## Django se#ttings for ASKBOT enabled project.
-import os.path
+import os
 import logging
 import sys
 import askbot
 import site
-
+import urlparse
 import dj_database_url
 
 #sys.stderr.write('\n'.join(sorted(sys.path)))
@@ -213,8 +213,22 @@ INSTALLED_APPS = (
 
 #setup memcached for production use!
 #see http://docs.djangoproject.com/en/1.1/topics/cache/ for details
-CACHE_BACKEND = 'locmem://'
+#CACHE_BACKEND = 'locmem://'
 #CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
+MYREDIS_URL = 'redis://:Zos2wk9z3VhxqZp3t3z9@nidoking.ec2.myredis.com:6546'
+
+redis_url = urlparse.urlparse(os.environ.get('MYREDIS_URL', 'redis://localhost:6959'))
+
+CACHES = {
+   'default': {
+       	'BACKEND': 'redis_cache.RedisCache',
+	'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+      	'OPTIONS': {
+      		'DB': 0,
+                'PASSWORD': redis_url.password,
+    		}
+	}
+}
 #needed for django-keyedcache
 CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different
