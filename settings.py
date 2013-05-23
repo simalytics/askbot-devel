@@ -230,11 +230,14 @@ AUTHENTICATION_BACKENDS = (
 
 #logging settings
 #LOG_FILENAME = 'askbot.log'
-#logging.basicConfig(
+logging.basicConfig(
 #    filename=os.path.join('log', LOG_FILENAME),
-#    level=logging.CRITICAL,
-#    format='%(pathname)s TIME: %(asctime)s MSG: %(filename)s:%(funcName)s:%(lineno)d %(message)s',
-#)
+    level=logging.CRITICAL,
+    format='%(pathname)s TIME: %(asctime)s MSG: %(filename)s:%(funcName)s:%(lineno)d %(message)s',
+)
+soh = logging.StreamHandler(sys.stdout)
+logger = logging.getLogger()
+logger.addHandler(soh)
 
 ###########################
 #
