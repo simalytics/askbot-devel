@@ -1,6 +1,6 @@
 ## Django se#ttings for ASKBOT enabled project.
 import os.path
-import logging
+#import logging
 import sys
 import askbot
 import site
@@ -74,6 +74,9 @@ IMAP_USE_TLS = False
 TIME_ZONE = 'America/Chicago'
 
 SITE_ID = 1
+
+# SPHINX_SERVER = 'ec2-50-16-150-32.compute-1.amazonaws.com'
+SPHINX_SERVER = 'localhost'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
