@@ -477,7 +477,6 @@ class SphinxClient:
         assert (len(self._reqs) == 0)
         self.AddQuery(query, index, comment)
         results = self.RunQueries()
-
         if not results or len(results) == 0:
             return None
         self._error = results[0]['error']
