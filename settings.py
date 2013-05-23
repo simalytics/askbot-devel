@@ -1,6 +1,6 @@
 ## Django se#ttings for ASKBOT enabled project.
 import os.path
-#import logging
+import logging
 import sys
 import askbot
 import site
