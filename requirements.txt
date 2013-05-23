@@ -29,7 +29,6 @@ longerusername
 beautifulsoup4
 psycopg2
 gunicorn
-dj-database-url
 django-storages
 boto
 MySQL-python==1.2.3

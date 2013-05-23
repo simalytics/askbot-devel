@@ -214,9 +214,9 @@ INSTALLED_APPS = (
 #see http://docs.djangoproject.com/en/1.1/topics/cache/ for details
 #CACHE_BACKEND = 'locmem://'
 #CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
-MYREDIS_URL = 'redis://:Zos2wk9z3VhxqZp3t3z9@nidoking.ec2.myredis.com:6546'
+REDISCLOUD_URL = 'redis://:YCaybmkeVYakDe7Y@pub-redis-19456.us-east-1-2.1.ec2.garantiadata.com:19456'
 
-redis_url = urlparse.urlparse(os.environ.get('MYREDIS_URL', 'redis://localhost:6959'))
+redis_url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL', 'redis://localhost:6959'))
 
 CACHES = {
    'default': {
