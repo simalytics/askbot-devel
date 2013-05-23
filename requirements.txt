@@ -33,3 +33,4 @@ dj-database-url
 django-storages
 boto
 MySQL-python==1.2.3
+-r ../lib/python2.7/site-packages/sphinxapi.py
