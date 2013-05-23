@@ -11,7 +11,7 @@ cache/??
 run
 #*.wsgi
 nbproject
-#settings_local.py
+local_settings.py
 #settings.py
 .idea
 .coverage
@@ -52,6 +52,7 @@ recaptcha
 *.DS_Store
 htmlcov
 askbot.egg-info
-#database
+database
 .project
 .pydevproject
+sphinx.conf
