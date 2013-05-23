@@ -829,7 +829,9 @@ def api_get_questions(request):
         threads = threads.filter(tags__name=tag_name)
 
     if query:
-        threads = threads.get_for_title_query(query)
+        # expand query for more results
+        expanded_query = "(" + ") (".join([t + " | %s*" % t for t in query.split()]) + ")"
+        threads = threads.get_for_title_query(expanded_query)
 
     #todo: filter out deleted threads, for now there is no way
     threads = threads.distinct()[:30]
