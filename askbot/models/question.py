@@ -61,9 +61,10 @@ class ThreadQuerySet(models.query.QuerySet):
                 ThreadManager.sphinxserver.SetMatchMode(sphinxapi.SPH_MATCH_BOOLEAN)
             ThreadManager.sphinxserver.SetLimits(0, 20)
             query_results = ThreadManager.sphinxserver.Query(search_query)
+            print search_query
             question_ids = [q['id'] for q in query_results['matches']]
             return self.filter(id__in=question_ids)
-        if 'postgresql_psycopg2' in db_engine_name:
+        elif 'postgresql_psycopg2' in db_engine_name:
             from askbot.search import postgresql
             return postgresql.run_title_search(
                                     self, search_query
