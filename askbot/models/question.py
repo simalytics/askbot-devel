@@ -51,7 +51,6 @@ class ThreadQuerySet(models.query.QuerySet):
         todo: possibly add tags
         todo: implement full text search on relevant fields
         """
-        print "#############"
         db_engine_name = askbot.get_database_engine_name()
         filter_parameters = {'deleted': False}
         if getattr(django_settings, 'USE_SPHINX_SEARCH', False):
@@ -62,6 +61,8 @@ class ThreadQuerySet(models.query.QuerySet):
                 ThreadManager.sphinxserver.SetMatchMode(sphinxapi.SPH_MATCH_BOOLEAN)
             ThreadManager.sphinxserver.SetLimits(0, 20)
             query_results = ThreadManager.sphinxserver.Query(search_query)
+            print query_results
+            print search_query
             question_ids = [q['id'] for q in query_results['matches']]
             return self.filter(id__in=question_ids)
         if 'postgresql_psycopg2' in db_engine_name:
