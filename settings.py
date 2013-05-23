@@ -5,7 +5,6 @@ import sys
 import askbot
 import site
 import urlparse
-import dj_database_url
 
 #sys.stderr.write('\n'.join(sorted(sys.path)))
 
