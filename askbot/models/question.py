@@ -61,6 +61,7 @@ class ThreadQuerySet(models.query.QuerySet):
                 ThreadManager.sphinxserver.SetMatchMode(sphinxapi.SPH_MATCH_BOOLEAN)
             ThreadManager.sphinxserver.SetLimits(0, 20)
             query_results = ThreadManager.sphinxserver.Query(search_query)
+            print "##########"
             print query_results
             print search_query
             question_ids = [q['id'] for q in query_results['matches']]
