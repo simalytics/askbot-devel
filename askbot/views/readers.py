@@ -94,7 +94,8 @@ def questions(request, **kwargs):
     if paginator.num_pages < search_state.page:
         search_state.page = 1
     page = paginator.page(search_state.page)
-    page.object_list = list(page.object_list) # evaluate the queryset
+    # page.object_list = list(page.object_list) # evaluate the queryset
+    page.object_list = []
 
     # INFO: Because for the time being we need question posts and thread authors
     #       down the pipeline, we have to precache them in thread objects
@@ -200,7 +201,6 @@ def questions(request, **kwargs):
         return HttpResponse(simplejson.dumps(ajax_data), mimetype = 'application/json')
 
     else: # non-AJAX branch
-
         template_data = {
             'active_tab': 'questions',
             'author_name' : meta_data.get('author_name',None),
