@@ -360,5 +360,6 @@ COMPRESS_CSS_FILTERS = (
 
 try:
     from local_settings import *
+    INSTALLED_APPS += LOCAL_INSTALLED_APPS
 except ImportError, e:
     pass

@@ -11,7 +11,7 @@ cache/??
 run
 #*.wsgi
 nbproject
-local_settings.py
+#local_settings.py
 #settings.py
 .idea
 .coverage

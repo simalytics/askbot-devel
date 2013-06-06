@@ -4,7 +4,7 @@ import random
 PRINT_THREAD = True
 PRINT_POST = True
 FILE = open('/usr/share/dict/british-english')
-NUM_RECORDS = 15000
+NUM_RECORDS = 50000
 POST_LENGTH = 250
 TITLE_LENGTH = 15
 
