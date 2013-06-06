@@ -11,7 +11,7 @@ try:
     from forum import const
 except ImportError:
     from askbot import const
-import re
+#import re
 
 def get_authors(question, orm = None):
     authors = set()
@@ -146,6 +146,7 @@ def mentionize(text, comment = None, all_users = None, orm = None):
     #append the rest of text that did not have @ symbols
     output += text
     return output
+
 
 class Migration(DataMigration):
     

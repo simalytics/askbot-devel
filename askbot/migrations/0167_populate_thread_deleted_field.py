@@ -5,6 +5,7 @@ from south.v2 import DataMigration
 from django.db import models
 from askbot.utils.console import ProgressBar
 
+
 class Migration(DataMigration):
 
     def forwards(self, orm):
