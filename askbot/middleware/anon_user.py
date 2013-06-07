@@ -19,7 +19,7 @@ class AnonymousMessageManager(object):
 
     def create(self, message=''):
         """send message to anonymous user"""
-        create_message(self.request, message)  
+        create_message(self.request, message)
 
     def get_and_delete(self):
         """returns messages sent to the anonymous user
@@ -65,6 +65,7 @@ class ConnectToSessionMessagesMiddleware(object):
                 request.user.message_set.create(message=msg)
 
     def process_response(self, request, response):
+
         """Adds the ``'askbot_visitor'``key to cookie if user ever
         authenticates so that the anonymous user message won't
         be shown after the user logs out"""

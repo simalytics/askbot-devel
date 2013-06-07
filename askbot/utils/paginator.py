@@ -2,10 +2,10 @@ from django.core.paginator import Paginator, Page
 from django.core import cache
 
 
-class CachedCountPaginator(Paginator):
+class PaginatorWithCache(Paginator):
 
     def __init__ (self, *args, **kwargs):
-        super(CachedCountPaginator, self).__init__(*args, **kwargs)
+        super(PaginatorWithCache, self).__init__(*args, **kwargs)
         count = cache.cache.get("paginator_count")
         if count:
             self._count = count
