@@ -28,7 +28,7 @@ from django.contrib.humanize.templatetags import humanize
 from django.http import QueryDict
 from django.conf import settings as django_settings
 
-import askbot
+
 from askbot import exceptions
 from askbot.utils.diff import textDiff as htmldiff
 from askbot.forms import AnswerForm, ShowQuestionForm
@@ -44,6 +44,7 @@ from askbot.search.state_manager import SearchState, DummySearchState
 from askbot.templatetags import extra_tags
 from askbot.conf import settings as askbot_settings
 from askbot.views import context
+from askbot.utils.paginator import PaginatorWithCache
 
 # used in index page
 #todo: - take these out of const or settings
@@ -90,14 +91,16 @@ def questions(request, **kwargs):
     if meta_data['non_existing_tags']:
         search_state = search_state.remove_tags(meta_data['non_existing_tags'])
 
-    paginator = Paginator(qs, page_size)
+    # INFO: Reduce db load and use a paginator that caches count and pages
+    paginator = PaginatorWithCache(qs, page_size) # paginator = Paginator(qs, page_size)
+
     if paginator.num_pages < search_state.page:
         search_state.page = 1
     page = paginator.page(search_state.page)
     page.object_list = list(page.object_list) # evaluate the queryset
     # INFO: Because for the time being we need question posts and thread authors
     #       down the pipeline, we have to precache them in thread objects
-    models.Thread.objects.precache_view_data_hack(threads=page.object_list)
+    # models.Thread.objects.precache_view_data_hack(threads=page.object_list)
 
     related_tags = Tag.objects.get_related_to_search(
                         threads=page.object_list,
