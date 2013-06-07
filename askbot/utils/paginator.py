@@ -20,7 +20,7 @@ class PaginatorWithCache(Paginator):
                 # TypeError if object_list.count() requires arguments
                 # (i.e. is of type list).
                 self._count = len(self.object_list)
-            cache.cache.set("paginator_count", self._count, 180)
+            cache.cache.set("paginator_count", self._count, 300)
         return self._count
     count = property(_get_count)
 
@@ -35,5 +35,5 @@ class PaginatorWithCache(Paginator):
         object_list = cache.cache.get("object_list")
         if not object_list:
             object_list = self.object_list[bottom:top]
-            cache.cache.set("object_list", object_list, 180)
+            cache.cache.set("object_list", object_list, 300)
         return Page(object_list, number, self)
