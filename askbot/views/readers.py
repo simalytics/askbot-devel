@@ -51,6 +51,7 @@ from askbot.utils.paginator import PaginatorWithCache
 from askbot.models import Post, Vote
 
 from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 
 INDEX_PAGE_SIZE = 30
 INDEX_AWARD_SIZE = 15
@@ -72,6 +73,7 @@ def index(request):#generates front page - shows listing of questions sorted in 
     return HttpResponseRedirect(reverse('questions'))
 
 @cache_page(60*3)
+@vary_on_cookie
 def questions(request, **kwargs):
     """
     List of Questions, Tagged questions, and Unanswered questions.
