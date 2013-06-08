@@ -46,12 +46,13 @@ from askbot.conf import settings as askbot_settings
 from askbot.views import context
 from askbot.utils.paginator import PaginatorWithCache
 
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
+
+
 # used in index page
 #todo: - take these out of const or settings
 from askbot.models import Post, Vote
-
-from django.views.decorators.cache import cache_page
-from django.views.decorators.vary import vary_on_cookie
 
 INDEX_PAGE_SIZE = 30
 INDEX_AWARD_SIZE = 15
