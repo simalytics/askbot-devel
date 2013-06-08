@@ -12,8 +12,8 @@ import urlparse
 ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
-DEBUG = False#set to True to enable debugging
-TEMPLATE_DEBUG = False#keep false when debugging jinja2 templates
+DEBUG = False #set to True to enable debugging
+TEMPLATE_DEBUG = False #keep false when debugging jinja2 templates
 INTERNAL_IPS = ('127.0.0.1',)
 
 ADMINS = (
@@ -244,14 +244,66 @@ AUTHENTICATION_BACKENDS = (
 
 #logging settings
 #LOG_FILENAME = 'askbot.log'
-logging.basicConfig(
+#logging.basicConfig(
 #    filename=os.path.join('log', LOG_FILENAME),
-    level=logging.CRITICAL,
-    format='%(pathname)s TIME: %(asctime)s MSG: %(filename)s:%(funcName)s:%(lineno)d %(message)s',
-)
-soh = logging.StreamHandler(sys.stdout)
-logger = logging.getLogger()
-logger.addHandler(soh)
+#    level=logging.CRITICAL,
+#    format='%(pathname)s TIME: %(asctime)s MSG: %(filename)s:%(funcName)s:%(lineno)d %(message)s',
+#)
+#soh = logging.StreamHandler(sys.stdout)
+#logger = logging.getLogger()
+#logger.addHandler(soh)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+#    'filters': {
+#        'special': {
+#            '()': 'project.logging.SpecialFilter',
+#            'foo': 'bar',
+#        }
+#   },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+#            'filters': ['special']
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+#        'myproject.custom': {
+#            'handlers': ['console', 'mail_admins'],
+#            'level': 'INFO',
+#            'filters': ['special']
+#        }
+    }
+}
 
 ###########################
 #
