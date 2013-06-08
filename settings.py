@@ -1,10 +1,10 @@
 ## Django se#ttings for ASKBOT enabled project.
 import os
-import logging
 import sys
 import askbot
 import site
 import urlparse
+import logging
 
 #sys.stderr.write('\n'.join(sorted(sys.path)))
 
@@ -280,37 +280,37 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-#            'filters': ['special']
-        }
-    },
-#    'loggers': {
-#        'django': {
-#            'handlers': ['null'],
-#            'propagate': True,
-#            'level': 'INFO',
-#        },
-#        'django.request': {
-#            'handlers': ['mail_admins'],
+#        'mail_admins': {
 #            'level': 'ERROR',
-#            'propagate': False,
-#        },
+#            'class': 'django.utils.log.AdminEmailHandler',
+#            'filters': ['special']
+#        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            #'handlers': ['mail_admins'],
+            'handlers': ['null'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
 #        'myproject.custom': {
 #            'handlers': ['console', 'mail_admins'],
 #            'level': 'INFO',
 #            'filters': ['special']
 #        }
-#    }
+    }
 }
 
 ###########################
 #
 #   this will allow running your forum with url like http://site.com/forum
 #
-#   ASKBOT_URL = 'forum/'
-#
+#   ASKBOT_URL = 'forum/' #
 ASKBOT_URL = '' #no leading slash, default = '' empty string
 ASKBOT_TRANSLATE_URL = True #translate specific URLs
 _ = lambda v:v #fake translation function for the login url
