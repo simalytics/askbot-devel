@@ -286,23 +286,23 @@ LOGGING = {
 #            'filters': ['special']
         }
     },
-    'loggers': {
-        'django': {
-            'handlers': ['null'],
-            'propagate': True,
-            'level': 'INFO',
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
+#    'loggers': {
+#        'django': {
+#            'handlers': ['null'],
+#            'propagate': True,
+#            'level': 'INFO',
+#        },
+#        'django.request': {
+#            'handlers': ['mail_admins'],
+#            'level': 'ERROR',
+#            'propagate': False,
+#        },
 #        'myproject.custom': {
 #            'handlers': ['console', 'mail_admins'],
 #            'level': 'INFO',
 #            'filters': ['special']
 #        }
-    }
+#    }
 }
 
 ###########################
