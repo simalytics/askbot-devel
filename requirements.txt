@@ -1,5 +1,5 @@
 Coffin==0.3.7
--e git+https://github.com/munum/django.git@6acb552f7992477bef39d2c0f70eee1cb22ec6d1#egg=Django-dev
+-e git+https://github.com/munum/django.git@better-django#egg=Django-dev
 Jinja2==2.7
 MarkupSafe==0.18
 MySQL-python==1.2.3
