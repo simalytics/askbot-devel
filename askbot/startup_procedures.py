@@ -927,10 +927,10 @@ def run_startup_tests():
     test_template_context_processors()
     test_tinymce()
     settings_tester = SettingsTester({
-        'CACHE_MIDDLEWARE_ANONYMOUS_ONLY': {
-            'value': True,
-            'message': "add line CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True"
-        },
+#        'CACHE_MIDDLEWARE_ANONYMOUS_ONLY': {
+#            'value': True,
+#            'message': "add line CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True"
+#        },
         'USE_I18N': {
             'value': True,
             'message': 'Please set USE_I18N = True and\n'
