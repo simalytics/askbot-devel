@@ -13,6 +13,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 DEBUG = False #set to True to enable debugging
+FLEXI_CACHE = True # set to True to enable caching views
 TEMPLATE_DEBUG = False #keep false when debugging jinja2 templates
 INTERNAL_IPS = ('127.0.0.1',)
 
@@ -225,7 +226,6 @@ CACHES = {
 	}
 }
 
-FLEXI_CACHE = True
 #needed for django-keyedcache
 CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different
