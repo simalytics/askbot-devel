@@ -57,6 +57,8 @@ class ConnectToSessionMessagesMiddleware(object):
                             request.user.message_set.get_and_delete
 
             #2) set the first greeting one time per session only
+        # disabled greeting to avoid giving anonymous users a cookie
+        # the purpose is to help caching pages using @vary_on_cookie
             # if 'greeting_set' not in request.session and \
             #         'askbot_visitor' not in request.COOKIES and \
 			#        askbot_settings.ENABLE_GREETING_FOR_ANON_USER:
