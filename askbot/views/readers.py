@@ -45,10 +45,8 @@ from askbot.templatetags import extra_tags
 from askbot.conf import settings as askbot_settings
 from askbot.views import context
 from askbot.utils.paginator import PaginatorWithCache
-
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
-
 
 # used in index page
 #todo: - take these out of const or settings
@@ -73,7 +71,7 @@ def index(request):#generates front page - shows listing of questions sorted in 
     """
     return HttpResponseRedirect(reverse('questions'))
 
-@cache_page(60*3)
+@cache_page(180)
 @vary_on_cookie
 def questions(request, **kwargs):
     """
@@ -248,10 +246,11 @@ def questions(request, **kwargs):
                                 )
         template_data.update(extra_context)
 
-        return render(request, 'main_page.html', template_data)
+        response = render(request, 'main_page.html', template_data)
+        return response
 
 
-def tags(request):#view showing a listing of available tags - plain list
+def tags(request):  #view showing a listing of available tags - plain list
 
     #1) Get parameters. This normally belongs to form cleaning.
     post_data = request.GET
