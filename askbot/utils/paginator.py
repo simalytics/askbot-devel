@@ -6,6 +6,8 @@ class PaginatorWithCache(Paginator):
 
     def __init__ (self, *args, **kwargs):
         super(PaginatorWithCache, self).__init__(*args, **kwargs)
+
+        #todo: make key a const
         count = cache.cache.get("paginator_count")
         if count:
             self._count = count
@@ -32,6 +34,7 @@ class PaginatorWithCache(Paginator):
         if top + self.orphans >= self.count:
             top = self.count
 
+        #todo: make key a const
         object_list = cache.cache.get("object_list")
         if not object_list:
             object_list = self.object_list[bottom:top]
