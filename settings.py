@@ -210,10 +210,6 @@ INSTALLED_APPS = (
 )
 
 
-#setup memcached for production use!
-#see http://docs.djangoproject.com/en/1.1/topics/cache/ for details
-#CACHE_BACKEND = 'locmem://'
-#CACHE_BACKEND = 'memcached://127.0.0.1:11211' # local memcached instance
 REDISCLOUD_URL = 'redis://:YCaybmkeVYakDe7Y@pub-redis-19456.us-east-1-2.1.ec2.garantiadata.com:19456'
 
 redis_url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL', 'redis://localhost:6959'))
@@ -233,7 +229,7 @@ CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different
 LIVESETTINGS_CACHE_TIMEOUT = CACHE_TIMEOUT
 CACHE_PREFIX = 'askbot' #make this unique
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+#CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 #If you use memcache you may want to uncomment the following line to enable memcached based sessions
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
@@ -410,8 +406,19 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.cssmin.CSSMinFilter'
 )
 
+# Ignore cookies set by Google Analytics
+CACHE_MIDDLEWARE_IGNORE_COOKIES = (
+        '_ga',
+        '__utma',
+        '__utmb',
+        '__utmc',
+        '__utmz',
+        '__utmv',
+)
+
 try:
     from local_settings import *
     INSTALLED_APPS += LOCAL_INSTALLED_APPS
 except ImportError, e:
     pass
+
