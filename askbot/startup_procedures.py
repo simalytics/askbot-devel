@@ -365,6 +365,7 @@ class SettingsTester(object):
     def test_setting(self, name,
             value = None, message = None,
             test_for_absence = False,
+            test_for_presence= False,
             replace_hint = None
         ):
         """if setting does is not present or if the value != required_value,
@@ -375,6 +376,9 @@ class SettingsTester(object):
                 if replace_hint:
                     value = getattr(self.settings, name)
                     message += replace_hint % value
+                self.messages.append(message)
+        elif test_for_presence:
+            if not hasattr(self.settings, name):
                 self.messages.append(message)
         else:
             if not hasattr(self.settings, name):
@@ -931,6 +935,10 @@ def run_startup_tests():
 #            'value': True,
 #            'message': "add line CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True"
 #        },
+         'FLEXI_CACHE': {
+            'test_for_presence' : True,
+	         'message' : 'Please explicitly enable or disable flexi cache using the FLEXI_CACHE variable'
+         },
         'USE_I18N': {
             'value': True,
             'message': 'Please set USE_I18N = True and\n'
