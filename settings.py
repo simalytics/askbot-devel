@@ -224,6 +224,8 @@ CACHES = {
     		}
 	}
 }
+
+FLEXI_CACHE = True
 #needed for django-keyedcache
 CACHE_TIMEOUT = 6000
 #sets a special timeout for livesettings if you want to make them different

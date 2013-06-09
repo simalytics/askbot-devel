@@ -38,6 +38,7 @@ from askbot import schedules
 from askbot.models.tag import Tag
 from askbot import const
 from askbot.utils import functions
+from askbot.utils.cache import flexi_cache_page
 from askbot.utils.html import sanitize_html
 from askbot.utils.decorators import anonymous_forbidden, ajax_only, get_only
 from askbot.search.state_manager import SearchState, DummySearchState
@@ -71,7 +72,8 @@ def index(request):#generates front page - shows listing of questions sorted in 
     """
     return HttpResponseRedirect(reverse('questions'))
 
-@cache_page(180)
+#@cache_page(180)
+@flexi_cache_page(180)
 @vary_on_cookie
 def questions(request, **kwargs):
     """
