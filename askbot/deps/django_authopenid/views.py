@@ -59,6 +59,9 @@ from askbot.utils.loading import load_module
 from sanction.client import Client as OAuth2Client
 from urlparse import urlparse
 
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
+
 from openid.consumer.consumer import Consumer, \
     SUCCESS, CANCEL, FAILURE, SETUP_NEEDED
 from openid.consumer.discover import DiscoveryFailure
@@ -397,6 +400,8 @@ def complete_oauth_signin(request):
 
 #@not_authenticated
 @csrf.csrf_protect
+@cache_page(1800)
+@vary_on_cookie
 def signin(request, template_name='authopenid/signin.html'):
     """
     signin page. It manages the legacy authentification (user/password)
@@ -1119,6 +1124,8 @@ def verify_email_and_register(request):
 @decorators.valid_password_login_provider_required
 @csrf.csrf_protect
 @fix_recaptcha_remote_ip
+@cache_page(1800)
+@vary_on_cookie
 def signup_with_password(request):
     """Create a password-protected account
     template: authopenid/signup_with_password.html
