@@ -5,63 +5,17 @@ from django.contrib.contenttypes.models import ContentType
 
 from askbot.utils.lists import flatten
 
-from django.utils.decorators import decorator_from_middleware_with_args
-from django.middleware.cache import CacheMiddleware
 from django.conf import settings as django_settings
+from django.views.decorators.cache import cache_page
 
 def flexi_cache_page(*args, **kwargs):
-    """
-    *** BASED ON @cache_page ***
-    ===========================================================
-    Decorator for views that tries getting the page from the cache and
-    populates the cache if the page isn't in the cache yet.
 
-    The cache is keyed by the URL and some data from the headers.
-    Additionally there is the key prefix that is used to distinguish different
-    cache areas in a multi-site setup. You could use the
-    sites.get_current().domain, for example, as that is unique across a Django
-    project.
-
-    Additionally, all headers from the response's Vary header will be taken
-    into account on caching -- just like the middleware does.
-    """
-
-    # Do nothing if FLEXI_CACHE is swiched off
-    if not django_settings.FLEXI_CACHE:
-        return lambda x: x
+    # Do nothing if FLEXI_CACHE is switched off
+    if django_settings.FLEXI_CACHE:
+        return cache_page
     else:
-        # We also add some asserts to give better error messages in case people are
-        # using other ways to call cache_page that no longer work.
-        cache_alias = kwargs.pop('cache', None)
-        key_prefix = kwargs.pop('key_prefix', None)
-        assert not kwargs, "The only keyword arguments are cache and key_prefix"
-        def warn():
-            import warnings
-            warnings.warn('The cache_page decorator must be called like: '
-                      'cache_page(timeout, [cache=cache name], [key_prefix=key prefix]). '
-                      'All other ways are deprecated.',
-                      PendingDeprecationWarning,
-                      stacklevel=3)
+        return lambda x: x
 
-        if len(args) > 1:
-            assert len(args) == 2, "cache_page accepts at most 2 arguments"
-            warn()
-            if callable(args[0]):
-                return decorator_from_middleware_with_args(CacheMiddleware)(cache_timeout=args[1], cache_alias=cache_alias, key_prefix=key_prefix)(args[0])
-            elif callable(args[1]):
-                return decorator_from_middleware_with_args(CacheMiddleware)(cache_timeout=args[0], cache_alias=cache_alias, key_prefix=key_prefix)(args[1])
-            else:
-                assert False, "cache_page must be passed a view function if called with two arguments"
-        elif len(args) == 1:
-            if callable(args[0]):
-                warn()
-                return decorator_from_middleware_with_args(CacheMiddleware)(cache_alias=cache_alias, key_prefix=key_prefix)(args[0])
-            else:
-                # The One True Way
-                return decorator_from_middleware_with_args(CacheMiddleware)(cache_timeout=args[0], cache_alias=cache_alias, key_prefix=key_prefix)
-        else:
-            warn()
-            return decorator_from_middleware_with_args(CacheMiddleware)(cache_alias=cache_alias, key_prefix=key_prefix)
 
 def fetch_model_dict(model, ids, fields=None):
     """
