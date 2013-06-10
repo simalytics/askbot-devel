@@ -8,6 +8,7 @@ from askbot.utils.lists import flatten
 from django.conf import settings as django_settings
 from django.views.decorators.cache import cache_page
 
+
 def flexi_cache_page(*args, **kwargs):
 
     # Do nothing if FLEXI_CACHE is switched off
