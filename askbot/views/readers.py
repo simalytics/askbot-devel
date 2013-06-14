@@ -347,14 +347,14 @@ def question(request, id):#refactor - long subroutine. display question body, an
         question_post = models.Post.objects.filter(
                                 post_type = 'question',
                                 id = id
-                            ).select_related('thread')[0]
+                            ).select_related('thread', 'author')[0]
     except IndexError:
     # Handle URL mapping - from old Q/A/C/ URLs to the new one
         try:
             question_post = models.Post.objects.filter(
                                     post_type='question',
                                     old_question_id = id
-                                ).select_related('thread')[0]
+                                ).select_related('thread', 'author')[0]
         except IndexError:
             raise Http404
 
