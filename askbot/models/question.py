@@ -1428,7 +1428,8 @@ class Thread(models.Model):
             #fetch new question post to make sure we're up-to-date
             'question': self._question_post(refresh=True),
             'search_state': DummySearchState(),
-            'visitor': visitor
+            'visitor': visitor,
+	    'groups_enabled' : askbot_settings.GROUPS_ENABLED
         }
         from askbot.views.context import get_extra as get_extra_context
         context.update(get_extra_context('ASKBOT_QUESTION_SUMMARY_EXTRA_CONTEXT', None, context))
