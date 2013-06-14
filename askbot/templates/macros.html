@@ -66,12 +66,12 @@
         post, min_rep_to_edit_wiki, karma_mode = None, badges_mode = None,
         groups_enabled = False
     ) -%}
-{#    {{ post_contributor_info(#}
-{#            post, "original_author", post.wiki, min_rep_to_edit_wiki,#}
-{#            karma_mode = karma_mode, badges_mode = badges_mode,#}
-{#            groups_enabled = groups_enabled#}
-{#        )#}
-{#    }}#}
+    {{ post_contributor_info(
+            post, "original_author", post.wiki, min_rep_to_edit_wiki,
+            karma_mode = karma_mode, badges_mode = badges_mode,
+            groups_enabled = groups_enabled
+        )
+    }}
     {{ post_contributor_info(
             post, "last_updater", post.wiki, min_rep_to_edit_wiki,
             karma_mode = karma_mode, badges_mode = badges_mode,
