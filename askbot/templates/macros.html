@@ -52,30 +52,30 @@
 </script>
 {%- endmacro -%}
 
-{%- macro post_contributor_avatar_and_credentials(post, user, karma_mode = None, badges_mode = None, group_enabled = False) -%}
+{%- macro post_contributor_avatar_and_credentials(post, user, karma_mode = None, badges_mode = None, groups_enabled = False) -%}
     {% if post.is_anonymous %}
         <img alt="{% trans %}anonymous user{% endtrans %}" src="{{ '/images/anon.png'|media }} " class="gravatar" width="32" height="32" />
         <p>{{ user.get_anonymous_name() }}</p>
     {% else %}
         {{ user_card(user, karma_mode=karma_mode, badges_mode=badges_mode) }}
     {% endif %}
-    {{ user_primary_group(user, group_enabled) }}
+    {{ user_primary_group(user, groups_enabled) }}
 {%- endmacro -%}
 
 {%- macro post_last_updater_and_creator_info(
         post, min_rep_to_edit_wiki, karma_mode = None, badges_mode = None,
-        group_enabled = False
+        groups_enabled = False
     ) -%}
     {{ post_contributor_info(
             post, "original_author", post.wiki, min_rep_to_edit_wiki,
             karma_mode = karma_mode, badges_mode = badges_mode,
-            group_enabled = group_enabled
+            groups_enabled = groups_enabled
         )
     }}
     {{ post_contributor_info(
             post, "last_updater", post.wiki, min_rep_to_edit_wiki,
             karma_mode = karma_mode, badges_mode = badges_mode,
-            group_enabled = group_enabled
+            groups_enabled = groups_enabled
         )
     }}
 {%- endmacro -%}
@@ -83,7 +83,7 @@
 {%- macro post_contributor_info(
         post, contributor_type, is_wiki, wiki_min_rep,
         karma_mode = None, badges_mode = None,
-        group_enabled = False
+        groups_enabled = False
     ) -%}
 {# there is a whole bunch of trickery here, probably indicative of 
 poor design of the data or methods on data objects #}
@@ -125,7 +125,7 @@ poor design of the data or methods on data objects #}
         </p>
         {{ post_contributor_avatar_and_credentials(
             post, post.author, karma_mode = karma_mode, badges_mode = badges_mode,
-            group_enabled = group_enabled
+            groups_enabled = groups_enabled
         ) }}
     {% endif %}
     </div>
@@ -155,7 +155,7 @@ poor design of the data or methods on data objects #}
                 post_contributor_avatar_and_credentials(
                     post, update_author,
                     karma_mode = karma_mode, badges_mode = badges_mode,
-                    group_enabled = group_enabled
+                    groups_enabled = groups_enabled
                 )
             }}
         {% endif %}
@@ -246,9 +246,9 @@ poor design of the data or methods on data objects #}
     </td>
 {%- endmacro -%}
 
-{%- macro user_primary_group(user, group_enabled = False) -%}
-    {# bypass querying db if group is disabled #}
-    {% if group_enabled %}
+{%- macro user_primary_group(user, groups_enabled = False) -%}
+    {# bypass querying db if groups are disabled #}
+    {% if groups_enabled %}
         {% set group=user.get_primary_group() %}
         {% if group %}
             <span class="primary-group-name"><a
