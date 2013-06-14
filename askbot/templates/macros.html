@@ -66,12 +66,12 @@
         post, min_rep_to_edit_wiki, karma_mode = None, badges_mode = None,
         groups_enabled = False
     ) -%}
-    {{ post_contributor_info(
-            post, "original_author", post.wiki, min_rep_to_edit_wiki,
-            karma_mode = karma_mode, badges_mode = badges_mode,
-            groups_enabled = groups_enabled
-        )
-    }}
+{#    {{ post_contributor_info(#}
+{#            post, "original_author", post.wiki, min_rep_to_edit_wiki,#}
+{#            karma_mode = karma_mode, badges_mode = badges_mode,#}
+{#            groups_enabled = groups_enabled#}
+{#        )#}
+{#    }}#}
     {{ post_contributor_info(
             post, "last_updater", post.wiki, min_rep_to_edit_wiki,
             karma_mode = karma_mode, badges_mode = badges_mode,
@@ -85,7 +85,7 @@
         karma_mode = None, badges_mode = None,
         groups_enabled = False
     ) -%}
-{# there is a whole bunch of trickery here, probably indicative of 
+{# there is a whole bunch of trickery here, probably indicative of
 poor design of the data or methods on data objects #}
 {% if contributor_type=="original_author" %}
     <div class='post-update-info'>
@@ -131,18 +131,22 @@ poor design of the data or methods on data objects #}
     </div>
 {% elif contributor_type=="last_updater" %}
     {% if post.post_type in ('question', 'answer') %}
+        {% set is_qa = True %}
         {% set last_edited_at = post.last_edited_at %}
-        {% set original_author = post.author %}
-        {% set update_author = post.last_edited_by %}
     {% elif post.__class__.__name__ == 'PostRevision' %}
         {% set last_edited_at = post.revised_at %}
-        {% set original_author = None %}{# fake value to force display widget in the revision views #}
-        {% set update_author = post.author %}
     {% endif %}
     {% if last_edited_at %}
+        {% if is_qa %}
+            {% set original_author = post.author %}
+            {% set update_author = post.last_edited_by %}
+        {% else %}
+            {% set original_author = None %}{# fake value to force display widget in the revision views #}
+            {% set update_author = post.author %}
+        {% endif %}
     <div class='post-update-info'>
         <p style="line-height:12px;">
-            <a 
+            <a
         {% if post.post_type == 'question' %}
             href="{% url question_revisions post.id %}"
         {% else %}
@@ -151,7 +155,7 @@ poor design of the data or methods on data objects #}
             >{% trans %}updated{% endtrans %} <strong>{{ timeago(last_edited_at) }}</strong></a>
         </p>
         {% if original_author != update_author or is_wiki %}
-            {{ 
+            {{
                 post_contributor_avatar_and_credentials(
                     post, update_author,
                     karma_mode = karma_mode, badges_mode = badges_mode,
@@ -175,7 +179,7 @@ poor design of the data or methods on data objects #}
 {%- macro tag_cloud(tags = None, font_sizes = None, search_state = None) -%}
     {% for tag in tags %}
     <span class="tag-size-{{ font_sizes[tag.name]|escape }}">
-        <a 
+        <a
             class="link-typeA"
             title="Number of entries: {{ tag.used_count }}"
             href="{{ search_state.add_tag(tag.name).full_url() }}"
