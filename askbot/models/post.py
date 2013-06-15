@@ -39,7 +39,6 @@ from askbot.models.base import BaseQuerySetManager, DraftContent
 
 #todo: maybe merge askbot.utils.markup and forum.utils.html
 from askbot.utils.diff import textDiff as htmldiff
-from askbot.search import mysql
 
 class PostToGroup(models.Model):
     post = models.ForeignKey('Post')
@@ -462,31 +461,33 @@ class Post(models.Model):
             #get mentioned first
             anticipated_authors += list(extra_authors)
 
-            mentioned_authors, post_html = markup.mentionize_text(
-                text,
-                anticipated_authors
-            )
+            # disable 'mentions' for our production
+            # mentioned_authors, post_html = markup.mentionize_text(
+            #     text,
+            #     anticipated_authors
+            # )
 
             #find mentions that were removed and identify any previously
             #entered mentions so that we can send alerts on only new ones
-            from askbot.models.user import Activity
-            if self.pk is not None:
-                #only look for previous mentions if post was already saved before
-                prev_mention_qs = Activity.objects.get_mentions(
-                    mentioned_in = self
-                )
-                new_set = set(mentioned_authors)
-                for prev_mention in prev_mention_qs:
 
-                    user = prev_mention.get_mentioned_user()
-                    if user is None:
-                        continue
-                    if user in new_set:
-                        #don't report mention twice
-                        new_set.remove(user)
-                    else:
-                        removed_mentions.append(prev_mention)
-                mentioned_authors = list(new_set)
+            # from askbot.models.user import Activity
+            # if self.pk is not None:
+            #     #only look for previous mentions if post was already saved before
+            #     prev_mention_qs = Activity.objects.get_mentions(
+            #         mentioned_in = self
+            #     )
+            #     new_set = set(mentioned_authors)
+            #     for prev_mention in prev_mention_qs:
+            #
+            #         user = prev_mention.get_mentioned_user()
+            #         if user is None:
+            #             continue
+            #         if user in new_set:
+            #             #don't report mention twice
+            #             new_set.remove(user)
+            #         else:
+            #             removed_mentions.append(prev_mention)
+            #     mentioned_authors = list(new_set)
 
         data = {
             'html': post_html,
