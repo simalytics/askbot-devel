@@ -427,6 +427,7 @@ class GroupQuerySet(models.query.QuerySet):
 class GroupManager(BaseQuerySetManager):
     """model manager for askbot groups"""
 
+    global_group = None
     def get_query_set(self):
         return GroupQuerySet(self.model)
 
@@ -440,9 +441,14 @@ class GroupManager(BaseQuerySetManager):
         #todo: change groups to django groups
         group_name = askbot_settings.GLOBAL_GROUP_NAME
         try:
-            return self.get_query_set().get(name=group_name)
+            # GLOBAL_GROUP_NAME is fixed, so the global group is also fixed
+            if not self.global_group:
+                self.global_group = self.get_query_set().get(name=group_name)
+            return self.global_group
         except Group.DoesNotExist:
-            return self.get_query_set().create(name=group_name)
+            if not self.global_group:
+                self.global_group = self.get_query_set().create(name=group_name)
+            return self.global_group
 
     def create(self, **kwargs):
         name = kwargs['name']
