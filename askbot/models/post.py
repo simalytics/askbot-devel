@@ -638,7 +638,7 @@ class Post(models.Model):
         # todo: experiment with adding posts to groups in celery
         # todo: measure performance gain in a high-load setting
         from askbot import tasks
-        tasks.add_post_to_groups(post=self, groups=groups)
+        tasks.add_post_to_groups.delay(post=self, groups=groups)
 
 
     # def add_to_groups(self, groups):
