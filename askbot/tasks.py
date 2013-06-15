@@ -36,6 +36,8 @@ from askbot.models.badges import award_badges_signal
 from askbot.models import get_reply_to_addresses, format_instant_notification_email
 from askbot import exceptions as askbot_exceptions
 from askbot.utils.twitter import Twitter
+from askbot.models.user import Group
+from askbot.models.post import PostToGroup
 
 # TODO: Make exceptions raised inside record_post_update_celery_task() ...
 #       ... propagate upwards to test runner, if only CELERY_ALWAYS_EAGER = True
@@ -182,6 +184,24 @@ def make_thread_public(
         question=None,
         recursive=False):
     question.thread.make_public(recursive)
+
+@task(ignore_result=True)
+def add_post_to_groups(post=None,
+                       groups=[]):
+    """associates post with groups"""
+    #this is likely to be temporary - we add
+    #vip groups to the list behind the scenes.
+    groups = list(groups)
+    vips = Group.objects.filter(is_vip=True)
+    groups.extend(vips)
+    #todo: use bulk-creation
+    for group in groups:
+        PostToGroup.objects.get_or_create(post=post, group=group)
+    if post.is_answer() or post.is_question():
+        comments = post.comments.all()
+        for group in groups:
+            for comment in comments:
+                PostToGroup.objects.get_or_create(post=comment, group=group)
 
 @task(ignore_result = True)
 def record_question_visit(

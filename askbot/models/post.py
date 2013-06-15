@@ -635,20 +635,27 @@ class Post(models.Model):
         return self.groups.filter(id=group.id).exists()
 
     def add_to_groups(self, groups):
-        """associates post with groups"""
-        #this is likely to be temporary - we add
-        #vip groups to the list behind the scenes.
-        groups = list(groups)
-        vips = Group.objects.filter(is_vip=True)
-        groups.extend(vips)
-        #todo: use bulk-creation
-        for group in groups:
-            PostToGroup.objects.get_or_create(post=self, group=group)
-        if self.is_answer() or self.is_question():
-            comments = self.comments.all()
-            for group in groups:
-                for comment in comments:
-                    PostToGroup.objects.get_or_create(post=comment, group=group)
+        # todo: experiment with adding posts to groups in celery
+        # todo: measure performance gain in a high-load setting
+        from askbot import tasks
+        tasks.add_post_to_groups(post=self, groups=groups)
+
+
+    # def add_to_groups(self, groups):
+    #     """associates post with groups"""
+    #     #this is likely to be temporary - we add
+    #     #vip groups to the list behind the scenes.
+    #     groups = list(groups)
+    #     vips = Group.objects.filter(is_vip=True)
+    #     groups.extend(vips)
+    #     #todo: use bulk-creation
+    #     for group in groups:
+    #         PostToGroup.objects.get_or_create(post=self, group=group)
+    #     if self.is_answer() or self.is_question():
+    #         comments = self.comments.all()
+    #         for group in groups:
+    #             for comment in comments:
+    #                 PostToGroup.objects.get_or_create(post=comment, group=group)
 
     def remove_from_groups(self, groups):
         PostToGroup.objects.filter(post=self, group__in=groups).delete()
