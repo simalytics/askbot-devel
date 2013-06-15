@@ -178,24 +178,28 @@ class ThreadManager(BaseQuerySetManager):
         #this call is rather heavy, we should split into several functions
         parse_results = question.parse_and_save(author=author, is_private=is_private)
 
-        revision = question.add_revision(
-            author=author,
-            is_anonymous=is_anonymous,
-            text=text,
-            comment=unicode(const.POST_STATUS['default_version']),
-            revised_at=added_at,
-            by_email=by_email,
-            email_address=email_address
-        )
+        # revision = question.add_revision(
+        #     author=author,
+        #     is_anonymous=is_anonymous,
+        #     text=text,
+        #     comment=unicode(const.POST_STATUS['default_version']),
+        #     revised_at=added_at,
+        #     by_email=by_email,
+        #     email_address=email_address
+        # )
 
-        author_group = author.get_personal_group()
-        thread.add_to_groups([author_group], visibility=ThreadToGroup.SHOW_PUBLISHED_RESPONSES)
-        question.add_to_groups([author_group])
+        if askbot_settings.GROUPS_ENABLED:
+            author_group = author.get_personal_group()
+            thread.add_to_groups([author_group], visibility=ThreadToGroup.SHOW_PUBLISHED_RESPONSES)
+            question.add_to_groups([author_group])
 
+        # run the slower jobs in celery
+        # todo: can the public/private status of a thread can delayed?
+        from askbot import tasks
         if is_private or group_id:#add groups to thread and question
-            thread.make_private(author, group_id=group_id)
+            tasks.make_thread_private.delay(question=question, user=author, group_id=group_id)
         else:
-            thread.make_public()
+            tasks.make_thread_public.delay(question=question)
 
         # INFO: Question has to be saved before update_tags() is called
         thread.update_tags(tagnames=tagnames, user=author, timestamp=added_at)
@@ -1142,23 +1146,23 @@ class Thread(models.Model):
                 thread_group.visibility = visibility
                 thread_group.save()
 
-        if recursive == True:
+        if recursive:
             #comments are taken care of automatically
             self.add_child_posts_to_groups(groups)
 
     def remove_from_groups(self, groups, recursive=False):
-        thread_groups =  ThreadToGroup.objects.filter(
+        thread_groups = ThreadToGroup.objects.filter(
                                         thread=self, group__in=groups
                                     )
         thread_groups.delete()
-        if recursive == True:
+        if recursive:
             self.remove_child_posts_from_groups(groups)
 
     def make_public(self, recursive=False):
         """adds the global group to the thread"""
         groups = (Group.objects.get_global_group(), )
         self.add_to_groups(groups, recursive=recursive)
-        if recursive == False:
+        if not recursive:
             self._question_post().make_public()
 
     def make_private(self, user, group_id = None):
@@ -1428,7 +1432,8 @@ class Thread(models.Model):
             #fetch new question post to make sure we're up-to-date
             'question': self._question_post(refresh=True),
             'search_state': DummySearchState(),
-            'visitor': visitor
+            'visitor': visitor,
+	    'groups_enabled' : askbot_settings.GROUPS_ENABLED
         }
         from askbot.views.context import get_extra as get_extra_context
         context.update(get_extra_context('ASKBOT_QUESTION_SUMMARY_EXTRA_CONTEXT', None, context))

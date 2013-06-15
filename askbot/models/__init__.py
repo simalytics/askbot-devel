@@ -1737,7 +1737,11 @@ def user_post_question(
                            #       because they set some attributes for that instance and expect them to be changed also for question.author
 
     if askbot_settings.AUTO_FOLLOW_QUESTION_BY_OP:
-        self.toggle_favorite_question(question)
+        # run slower tasks in celery
+        # todo: can the toggling be delayed?
+        from askbot import tasks
+        tasks.toggle_favorite_question.delay(user=self, question=question)
+        # self.toggle_favorite_question(question)
 
     return question
 

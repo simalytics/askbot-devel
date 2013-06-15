@@ -163,6 +163,26 @@ def record_post_update_celery_task(
         print >>sys.stderr, unicode(traceback.format_exc()).encode('utf-8')
         raise
 
+@task(ignore_result=True)
+def toggle_favorite_question(user=None,
+                             question=None):
+    user.toggle_favorite_question(question)
+
+
+@task(ignore_result=True)
+def make_thread_private(
+        question=None,
+        user=None,
+        group_id=None):
+    question.thread.make_private(user=user, group_id=group_id)
+
+
+@task(ignore_result=True)
+def make_thread_public(
+        question=None,
+        recursive=False):
+    question.thread.make_public(recursive)
+
 @task(ignore_result = True)
 def record_question_visit(
     question_post = None,
