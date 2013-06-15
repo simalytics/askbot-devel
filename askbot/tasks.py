@@ -168,6 +168,7 @@ def record_post_update_celery_task(
 @task(ignore_result=True)
 def toggle_favorite_question(user=None,
                              question=None):
+    # todo: do not pass model object as an argument to avoid race conditions
     user.toggle_favorite_question(question)
 
 
@@ -176,6 +177,7 @@ def make_thread_private(
         question=None,
         user=None,
         group_id=None):
+    # todo: do not pass model object as an argument to avoid race conditions
     question.thread.make_private(user=user, group_id=group_id)
 
 
@@ -183,11 +185,13 @@ def make_thread_private(
 def make_thread_public(
         question=None,
         recursive=False):
-    question.thread.make_public(recursive)
+    # todo: do not pass model object as an argument to avoid race conditions
+    question.thread.make_public(recursive=recursive)
 
 @task(ignore_result=True)
 def add_post_to_groups(post=None,
                        groups=[]):
+    # todo: do not pass model object as an argument to avoid race conditions
     """associates post with groups"""
     #this is likely to be temporary - we add
     #vip groups to the list behind the scenes.
