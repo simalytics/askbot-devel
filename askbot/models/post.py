@@ -228,8 +228,10 @@ class PostManager(BaseQuerySetManager):
 
         #possibly modify the is_private, if one of the groups
         #mandates explicit publishing of the posts
-        is_private = is_private or \
-            (thread and thread.requires_response_moderation(author))
+
+        #todo: re-enable response moderation
+        # is_private = is_private or \
+        #     (thread and thread.requires_response_moderation(author))
 
         parse_results = post.parse_and_save(author=author, is_private=is_private)
 
@@ -286,7 +288,11 @@ class PostManager(BaseQuerySetManager):
         #todo: this totally belongs to some `Thread` class method
         thread.answer_count += 1
         thread.save()
-        thread.set_last_activity(last_activity_at=added_at, last_activity_by=author) # this should be here because it regenerates cached thread summary html
+
+        # run slow task in celery
+        from askbot import tasks
+        tasks.set_thread_last_activity.delay(thread=thread, last_activity_at=added_at, last_activity_by=author)
+        #thread.set_last_activity(last_activity_at=added_at, last_activity_by=author) # this should be here because it regenerates cached thread summary html
         return answer
 
 

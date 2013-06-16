@@ -233,10 +233,13 @@ def ask(request):#view used to ask a new question
             language = form.cleaned_data.get('language', None)
 
             if request.user.is_authenticated():
-                drafts = models.DraftQuestion.objects.filter(
-                                                author=request.user
-                                            )
-                drafts.delete()
+                # run slow task in celery
+                from askbot import tasks
+                tasks.remove_draft.delay(author=request.user)
+                # drafts = models.DraftQuestion.objects.filter(
+                #                                 author=request.user
+                #                             )
+                # drafts.delete()
 
                 user = form.get_post_user(request.user)
                 try:
@@ -597,11 +600,15 @@ def answer(request, id, form_class=forms.AnswerForm):#process a new answer
 
         if form.is_valid():
             if request.user.is_authenticated():
-                drafts = models.DraftAnswer.objects.filter(
-                                                author=request.user,
-                                                thread=question.thread
-                                            )
-                drafts.delete()
+                # run slow task in celery
+                from askbot import tasks
+                tasks.remove_draft_answer.delay(author=request.user,
+                                                thread=question.thread)
+                # drafts = models.DraftAnswer.objects.filter(
+                #                                 author=request.user,
+                #                                 thread=question.thread
+                #                             )
+                # drafts.delete()
                 try:
                     user = form.get_post_user(request.user)
                     answer = form.save(question, user)

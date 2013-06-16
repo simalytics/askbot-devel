@@ -31,6 +31,7 @@ from celery.decorators import task
 from askbot.conf import settings as askbot_settings
 from askbot import const
 from askbot import mail
+from askbot import models
 from askbot.models import Post, Thread, User, ReplyAddress
 from askbot.models.badges import award_badges_signal
 from askbot.models import get_reply_to_addresses, format_instant_notification_email
@@ -189,6 +190,23 @@ def make_thread_public(
     question.thread.make_public(recursive=recursive)
 
 @task(ignore_result=True)
+def remove_draft_answer(author=None,
+                        thread=None):
+    drafts = models.DraftAnswer.objects.filter(
+                       author=author,
+                       thread=thread
+                       )
+    drafts.delete()
+
+@task(ignore_result=True)
+def remove_draft_question(author=None):
+    drafts = models.DraftQuestion.objects.filter(
+                       author=author
+                       )
+    drafts.delete()
+
+
+@task(ignore_result=True)
 def add_post_to_groups(post=None,
                        groups=[]):
     # todo: do not pass model object as an argument to avoid race conditions
@@ -206,6 +224,13 @@ def add_post_to_groups(post=None,
         for group in groups:
             for comment in comments:
                 PostToGroup.objects.get_or_create(post=comment, group=group)
+
+@task(ignore_result = True)
+def set_thread_last_activity(thread=None,
+                             last_activity_at=None,
+                             last_activity_by=None):
+    thread.set_last_activity(last_activity_at=last_activity_at,
+                             last_activity_by=last_activity_by)
 
 @task(ignore_result = True)
 def record_question_visit(
