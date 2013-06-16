@@ -235,7 +235,7 @@ def ask(request):#view used to ask a new question
             if request.user.is_authenticated():
                 # run slow task in celery
                 from askbot import tasks
-                tasks.remove_draft.delay(author=request.user)
+                tasks.remove_draft_question.delay(author=request.user)
                 # drafts = models.DraftQuestion.objects.filter(
                 #                                 author=request.user
                 #                             )
