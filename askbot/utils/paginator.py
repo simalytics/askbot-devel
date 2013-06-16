@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, Page
 from django.core import cache
-
+from askbot.conf import settings as askbot_settings
 
 class PaginatorWithCache(Paginator):
 
@@ -34,9 +34,13 @@ class PaginatorWithCache(Paginator):
         if top + self.orphans >= self.count:
             top = self.count
 
-        #todo: make key a const
-        object_list = cache.cache.get("object_list")
-        if not object_list:
+        #todo: make a key generator
+        if top < getattr(askbot_settings, "CACHE_PAGINATOR_TOP", 200):
+            key = "_".join(("object_list", str(bottom), str(top)))
+            object_list = cache.cache.get(key)
+            if not object_list:
+                object_list = self.object_list[bottom:top]
+                cache.cache.set(key, object_list, 300)
+        else:
             object_list = self.object_list[bottom:top]
-            cache.cache.set("object_list", object_list, 300)
         return Page(object_list, number, self)
