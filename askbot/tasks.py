@@ -205,6 +205,21 @@ def remove_draft_question(author=None):
                        )
     drafts.delete()
 
+@task(ignore_result=True)
+def add_post_revision(post_id = None,
+                      author = None,
+                      revised_at = None,
+                      text = None,
+                      comment = None,
+                      by_email = False):
+    post = Post.objects.get(id=post_id)
+    post.add_revision(
+            author = author,
+            revised_at = revised_at,
+            text = text,
+            comment = comment,
+            by_email = by_email
+            )
 
 @task(ignore_result=True)
 def add_post_to_groups(post=None,

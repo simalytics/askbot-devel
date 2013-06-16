@@ -246,6 +246,16 @@ class PostManager(BaseQuerySetManager):
             sender=post.__class__
         )
 
+        # from askbot import tasks
+        # tasks.add_post_revision.delay(
+        #     post_id = post.id,
+        #     author = author,
+        #     revised_at = added_at,
+        #     text = text,
+        #     comment = unicode(const.POST_STATUS['default_version']),
+        #     by_email = by_email
+        # )
+
         post.add_revision(
             author = author,
             revised_at = added_at,
@@ -813,7 +823,10 @@ class Post(models.Model):
 
         if self.is_answer():
             if not question_post:
-                question_post = self.thread._question_post()
+                if not hasattr(self, '_thread_cache'):
+                    question_post = self.thread._question_post()
+                else:
+                    question_post = self._thread_cache._question_post()
             if no_slug:
                 url = u'%(base)s?answer=%(id)d#post-id-%(id)d' % {
                     'base': urlresolvers.reverse('question', args=[question_post.id]),
