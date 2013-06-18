@@ -27,7 +27,7 @@ from django.template import Context
 from django.template.loader import get_template
 from django.utils.translation import ugettext as _
 from django.utils import simplejson
-from celery.decorators import task
+from celery import task
 from askbot.conf import settings as askbot_settings
 from askbot import const
 from askbot import mail
@@ -190,8 +190,7 @@ def make_thread_public(
     question.thread.make_public(recursive=recursive)
 
 @task(ignore_result=True)
-def remove_draft_answer(author=None,
-                        thread=None):
+def remove_draft_answer(author=None, thread=None):
     drafts = models.DraftAnswer.objects.filter(
                        author=author,
                        thread=thread
@@ -206,19 +205,23 @@ def remove_draft_question(author=None):
     drafts.delete()
 
 @task(ignore_result=True)
-def add_post_revision(post_id = None,
-                      author = None,
-                      revised_at = None,
-                      text = None,
-                      comment = None,
-                      by_email = False):
+def add_post_revision(
+                   post_id=None,
+                   author=None,
+                   revised_at=None,
+                   text=None,
+                   comment=None,
+                   by_email=False,
+                   **kwargs
+                   ):
     post = Post.objects.get(id=post_id)
     post.add_revision(
             author = author,
             revised_at = revised_at,
             text = text,
             comment = comment,
-            by_email = by_email
+            by_email = by_email,
+            **kwargs
             )
 
 @task(ignore_result=True)

@@ -17,7 +17,7 @@ import re
 import urllib
 import uuid
 from celery import states
-from celery.task import task
+from django_transaction_signals import defer
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db.models import signals as django_signals
 from django.template import Context
@@ -1740,7 +1740,7 @@ def user_post_question(
         # run slower tasks in celery
         # todo: can the toggling be delayed?
         from askbot import tasks
-        tasks.toggle_favorite_question.delay(user=self, question=question)
+        defer(tasks.toggle_favorite_question.delay, user=self, question=question)
         # self.toggle_favorite_question(question)
 
     return question
@@ -3287,7 +3287,6 @@ def record_post_update_activity(
         newly_mentioned_users = list()
 
     from askbot import tasks
-
     tasks.record_post_update_celery_task.delay(
         post_id=post.id,
         post_content_type_id=ContentType.objects.get_for_model(post).id,
@@ -3741,7 +3740,7 @@ signals.user_registered.connect(greet_new_user)
 signals.user_updated.connect(record_user_full_updated, sender=User)
 signals.user_logged_in.connect(complete_pending_tag_subscriptions)#todo: add this to fake onlogin middleware
 signals.user_logged_in.connect(post_anonymous_askbot_content)
-signals.post_updated.connect(record_post_update_activity)
+#signals.post_updated.connect(record_post_update_activity)
 signals.new_answer_posted.connect(tweet_new_post)
 signals.new_question_posted.connect(tweet_new_post)
 

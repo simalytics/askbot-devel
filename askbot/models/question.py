@@ -14,7 +14,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.utils.translation import string_concat
 from django.utils.translation import get_language
-
+from django_transaction_signals import defer
 import askbot
 from askbot.conf import settings as askbot_settings
 #from askbot import mail
@@ -33,6 +33,8 @@ from askbot.utils.lists import LazyList
 from askbot.search import mysql
 #from askbot.utils.slug import slugify
 from askbot.search.state_manager import DummySearchState
+import django_transaction_signals
+from django.db import transaction
 
 import sphinxapi
 
@@ -178,43 +180,46 @@ class ThreadManager(BaseQuerySetManager):
         #this call is rather heavy, we should split into several functions
         parse_results = question.parse_and_save(author=author, is_private=is_private)
 
-        # revision = question.add_revision(
-        #     author=author,
-        #     is_anonymous=is_anonymous,
-        #     text=text,
-        #     comment=unicode(const.POST_STATUS['default_version']),
-        #     revised_at=added_at,
-        #     by_email=by_email,
-        #     email_address=email_address
-        # )
 
-        if askbot_settings.GROUPS_ENABLED:
+        # run slow tasks in celery, post-commit
+        from askbot import tasks
+        defer(tasks.add_post_revision.delay,
+              post_id = question.id,
+              author=author,
+              is_anonymous=is_anonymous,
+              text=text,
+              comment=unicode(const.POST_STATUS['default_version']),
+              revised_at=added_at,
+              by_email=by_email,
+              email_address=email_address
+              )
+
+        if getattr(askbot_settings, 'GROUPS_ENABLED', False):
             author_group = author.get_personal_group()
             thread.add_to_groups([author_group], visibility=ThreadToGroup.SHOW_PUBLISHED_RESPONSES)
             question.add_to_groups([author_group])
 
         # run the slower jobs in celery
         # todo: can the public/private status of a thread can delayed?
-        from askbot import tasks
+
         if is_private or group_id:#add groups to thread and question
-            tasks.make_thread_private.delay(question=question, user=author, group_id=group_id)
+            defer(tasks.make_thread_private.delay, question=question, user=author, group_id=group_id)
         else:
-            tasks.make_thread_public.delay(question=question)
+            defer(tasks.make_thread_public.delay, question=question)
 
         # INFO: Question has to be saved before update_tags() is called
         thread.update_tags(tagnames=tagnames, user=author, timestamp=added_at)
 
         #todo: this is handled in signal because models for posts
         #are too spread out
-        signals.post_updated.send(
-            post=question,
-            updated_by=author,
-            newly_mentioned_users=parse_results['newly_mentioned_users'],
-            timestamp=added_at,
-            created=True,
-            diff=parse_results['diff'],
-            sender=question.__class__
-        )
+        defer(askbot.models.record_post_update_activity,
+              post=question,
+              updated_by=author,
+              newly_mentioned_users=parse_results['newly_mentioned_users'],
+              timestamp=added_at,
+              created=True,
+              diff=parse_results['diff']
+              )
 
         return thread
 

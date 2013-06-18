@@ -36,6 +36,7 @@ from askbot.utils import markup
 from askbot.utils.html import sanitize_html, strip_tags
 from askbot.utils.html import site_url
 from askbot.models.base import BaseQuerySetManager, DraftContent
+from django_transaction_signals import defer
 
 #todo: maybe merge askbot.utils.markup and forum.utils.html
 from askbot.utils.diff import textDiff as htmldiff
@@ -246,23 +247,16 @@ class PostManager(BaseQuerySetManager):
             sender=post.__class__
         )
 
-        # from askbot import tasks
-        # tasks.add_post_revision.delay(
-        #     post_id = post.id,
-        #     author = author,
-        #     revised_at = added_at,
-        #     text = text,
-        #     comment = unicode(const.POST_STATUS['default_version']),
-        #     by_email = by_email
-        # )
-
-        post.add_revision(
-            author = author,
-            revised_at = added_at,
-            text = text,
-            comment = unicode(const.POST_STATUS['default_version']),
-            by_email = by_email
-        )
+        # run slow tasks in celery, post-commit
+        from askbot import tasks
+        defer(tasks.add_post_revision.delay,
+              post_id = post.id,
+              author = author,
+              revised_at = added_at,
+              text = text,
+              comment = unicode(const.POST_STATUS['default_version']),
+              by_email = by_email
+              )
 
         return post
 
@@ -654,7 +648,7 @@ class Post(models.Model):
         # todo: experiment with adding posts to groups in celery
         # todo: measure performance gain in a high-load setting
         from askbot import tasks
-        tasks.add_post_to_groups.delay(post=self, groups=groups)
+        defer(tasks.add_post_to_groups.delay, post=self, groups=groups)
 
 
     # def add_to_groups(self, groups):
@@ -1746,13 +1740,15 @@ class Post(models.Model):
             self.wiki = True
 
         #must add revision before saving the answer
-        self.add_revision(
-            author = edited_by,
-            revised_at = edited_at,
-            text = text,
-            comment = comment,
-            by_email = by_email
-        )
+        from askbot import tasks
+        defer(tasks.add_post_revision.delay,
+              post_id = self.id,
+              author = edited_by,
+              revised_at = edited_at,
+              text = text,
+              comment = comment,
+              by_email = by_email
+              )
 
         parse_results = self.parse_and_save(author=edited_by, is_private=is_private)
 
