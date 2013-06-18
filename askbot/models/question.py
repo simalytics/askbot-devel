@@ -14,7 +14,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.utils.translation import string_concat
 from django.utils.translation import get_language
-from django_transaction_signals import defer
+import django_transaction_signals
 import askbot
 from askbot.conf import settings as askbot_settings
 #from askbot import mail
@@ -183,7 +183,8 @@ class ThreadManager(BaseQuerySetManager):
 
         # run slow tasks in celery, post-commit
         from askbot import tasks
-        defer(tasks.add_post_revision.delay,
+        django_transaction_signals.defer(
+              tasks.add_post_revision.delay,
               post_id = question.id,
               author=author,
               is_anonymous=is_anonymous,
@@ -192,7 +193,7 @@ class ThreadManager(BaseQuerySetManager):
               revised_at=added_at,
               by_email=by_email,
               email_address=email_address
-              )
+        )
 
         if getattr(askbot_settings, 'GROUPS_ENABLED', False):
             author_group = author.get_personal_group()
@@ -203,23 +204,32 @@ class ThreadManager(BaseQuerySetManager):
         # todo: can the public/private status of a thread can delayed?
 
         if is_private or group_id:#add groups to thread and question
-            defer(tasks.make_thread_private.delay, question=question, user=author, group_id=group_id)
+            django_transaction_signals.defer(
+                tasks.make_thread_private.delay,
+                question=question,
+                user=author,
+                group_id=group_id
+            )
         else:
-            defer(tasks.make_thread_public.delay, question=question)
+            django_transaction_signals.defer(
+                tasks.make_thread_public.delay,
+                question=question
+            )
 
         # INFO: Question has to be saved before update_tags() is called
         thread.update_tags(tagnames=tagnames, user=author, timestamp=added_at)
 
         #todo: this is handled in signal because models for posts
         #are too spread out
-        defer(askbot.models.record_post_update_activity,
-              post=question,
-              updated_by=author,
-              newly_mentioned_users=parse_results['newly_mentioned_users'],
-              timestamp=added_at,
-              created=True,
-              diff=parse_results['diff']
-              )
+        django_transaction_signals.defer(
+            askbot.models.record_post_update_activity,
+            post=question,
+            updated_by=author,
+            newly_mentioned_users=parse_results['newly_mentioned_users'],
+            timestamp=added_at,
+            created=True,
+            diff=parse_results['diff']
+        )
 
         return thread
 

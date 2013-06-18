@@ -36,7 +36,7 @@ from askbot.utils import markup
 from askbot.utils.html import sanitize_html, strip_tags
 from askbot.utils.html import site_url
 from askbot.models.base import BaseQuerySetManager, DraftContent
-from django_transaction_signals import defer
+import django_transaction_signals
 
 #todo: maybe merge askbot.utils.markup and forum.utils.html
 from askbot.utils.diff import textDiff as htmldiff
@@ -249,14 +249,15 @@ class PostManager(BaseQuerySetManager):
 
         # run slow tasks in celery, post-commit
         from askbot import tasks
-        defer(tasks.add_post_revision.delay,
-              post_id = post.id,
-              author = author,
-              revised_at = added_at,
-              text = text,
-              comment = unicode(const.POST_STATUS['default_version']),
-              by_email = by_email
-              )
+        django_transaction_signals.defer(
+            tasks.add_post_revision.delay,
+            post_id = post.id,
+            author = author,
+            revised_at = added_at,
+            text = text,
+            comment = unicode(const.POST_STATUS['default_version']),
+            by_email = by_email
+        )
 
         return post
 
@@ -648,7 +649,11 @@ class Post(models.Model):
         # todo: experiment with adding posts to groups in celery
         # todo: measure performance gain in a high-load setting
         from askbot import tasks
-        defer(tasks.add_post_to_groups.delay, post=self, groups=groups)
+        django_transaction_signals.defer(
+            tasks.add_post_to_groups.delay,
+            post=self,
+            groups=groups
+            )
 
 
     # def add_to_groups(self, groups):
@@ -1741,14 +1746,15 @@ class Post(models.Model):
 
         #must add revision before saving the answer
         from askbot import tasks
-        defer(tasks.add_post_revision.delay,
+        django_transaction_signals.defer(
+              tasks.add_post_revision.delay,
               post_id = self.id,
               author = edited_by,
               revised_at = edited_at,
               text = text,
               comment = comment,
               by_email = by_email
-              )
+        )
 
         parse_results = self.parse_and_save(author=edited_by, is_private=is_private)
 

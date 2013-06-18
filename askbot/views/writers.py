@@ -45,7 +45,7 @@ from askbot.utils.loading import load_module
 from askbot.views import context
 from askbot.templatetags import extra_filters_jinja as template_filters
 from askbot.importers.stackexchange import management as stackexchange#todo: may change
-from django_transaction_signals import defer
+import django_transaction_signals
 
 # used in index page
 INDEX_PAGE_SIZE = 20
@@ -236,8 +236,10 @@ def ask(request):#view used to ask a new question
             if request.user.is_authenticated():
                 # run slow task in celery, post-commit
                 from askbot import tasks
-                defer(tasks.remove_draft_question.delay,
-                      author=request.user)
+                django_transaction_signals.defer(
+                    tasks.remove_draft_question.delay,
+                    author=request.user
+                )
                 # drafts = models.DraftQuestion.objects.filter(
                 #                                 author=request.user
                 #                             )
@@ -604,9 +606,11 @@ def answer(request, id, form_class=forms.AnswerForm):#process a new answer
             if request.user.is_authenticated():
                 # run slow task in celery, post-commit
                 from askbot import tasks
-                defer(tasks.remove_draft_answer.delay,
-                      author=request.user,
-                      thread=question.thread)
+                django_transaction_signals.defer(
+                    tasks.remove_draft_answer.delay,
+                    author=request.user,
+                    thread=question.thread
+                )
                 try:
                     user = form.get_post_user(request.user)
                     answer = form.save(question, user)

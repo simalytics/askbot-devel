@@ -17,7 +17,7 @@ import re
 import urllib
 import uuid
 from celery import states
-from django_transaction_signals import defer
+import django_transaction_signals
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db.models import signals as django_signals
 from django.template import Context
@@ -1740,7 +1740,11 @@ def user_post_question(
         # run slower tasks in celery
         # todo: can the toggling be delayed?
         from askbot import tasks
-        defer(tasks.toggle_favorite_question.delay, user=self, question=question)
+        django_transaction_signals.defer(
+            tasks.toggle_favorite_question.delay,
+            user=self,
+            question=question
+        )
         # self.toggle_favorite_question(question)
 
     return question
